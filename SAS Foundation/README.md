@@ -36,6 +36,12 @@ The following is an index for all of the SAS Foundation SAS/ACCESS sample files.
 * TPT
     * Teradata
 
+* authentication
+    * Salesforce
+
+* qualifiers
+    * Salesforce
+
 ## Generic files that are overridden in sub-directories
 
 * createTableAsSelect

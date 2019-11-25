@@ -138,87 +138,92 @@ quit;
  /* LIBNAME Sample 9         */
  /*==========================*/
 
-/* SQL Implicit Passthru ON */
-libname mydblib &dbms &CONNOPT direct_sql=yes;
-options debug=dbms_select;
-title 'Libname Sample 9a: Delayed International Flights in March';
+%if (&enginename NE SASIOSLF) %then %do;
+  /* SQL Implicit Passthru ON */
+  libname mydblib &dbms &CONNOPT direct_sql=yes;
+  options debug=dbms_select;
+  title 'Libname Sample 9a: Delayed International Flights in March';
 
-proc sql;
-  select distinct samdat1.FLIGHT,
-      samdat1.DATES,
-      DELAY format=2.0
-    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
-  where samdat1.FLIGHT=samdat2.FLIGHT and
-        samdat1.DATES=samdat2.DATES and
-        samdat1.FLIGHT=samdat3.FLIGHT and
-        DELAY>0
-  order by DELAY descending;
-quit;
+  proc sql;
+    select distinct samdat1.FLIGHT,
+        samdat1.DATES,
+        DELAY format=2.0
+      from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+    where samdat1.FLIGHT=samdat2.FLIGHT and
+          samdat1.DATES=samdat2.DATES and
+          samdat1.FLIGHT=samdat3.FLIGHT and
+          DELAY>0
+    order by DELAY descending;
+  quit;
+%end;
 
  /*==========================*/
  /* LIBNAME Sample 9b        */
  /*==========================*/
+%if (&enginename NE SASIOSLF) %then %do;
+  /* SQL Implicit Passthru OFF */
+  libname mydblib &dbms &CONNOPT direct_sql=no;
 
-/* SQL Implicit Passthru OFF */
-libname mydblib &dbms &CONNOPT direct_sql=no;
+  title 'Libname Sample 9b: Delayed International Flights in March';
 
-title 'Libname Sample 9b: Delayed International Flights in March';
-
-proc sql;
-  select distinct samdat1.FLIGHT,
-      samdat1.DATES,
-      DELAY format=2.0
-    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
-  where samdat1.FLIGHT=samdat2.FLIGHT and
-        samdat1.DATES=samdat2.DATES and
-        samdat1.FLIGHT=samdat3.FLIGHT and
-        DELAY>0
-  order by DELAY descending;
-quit;
+  proc sql;
+    select distinct samdat1.FLIGHT,
+        samdat1.DATES,
+        DELAY format=2.0
+      from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+    where samdat1.FLIGHT=samdat2.FLIGHT and
+          samdat1.DATES=samdat2.DATES and
+          samdat1.FLIGHT=samdat3.FLIGHT and
+          DELAY>0
+    order by DELAY descending;
+  quit;
+%end;
 
  /*==========================*/
  /* LIBNAME Sample 9c        */
  /*==========================*/
+%if (&enginename NE SASIOSLF) %then %do;
+  libname mydblib &dbms &CONNOPT direct_sql=nomultoutjoins;
 
-libname mydblib &dbms &CONNOPT direct_sql=nomultoutjoins;
+  title 'Libname Sample 9c: Delayed International Flights in March';
 
-title 'Libname Sample 9c: Delayed International Flights in March';
-
-proc sql;
-  select distinct samdat1.FLIGHT,
-      samdat1.DATES,
-      DELAY format=2.0
-    from mydblib.SAMDAT1
-    full join mydblib.SAMDAT2 on
-      samdat1.FLIGHT = samdat2.FLIGHT
-    full join mydblib.SAMDAT3 on
-      samdat1.FLIGHT = samdat3.FLIGHT
-  order by DELAY descending;
-quit;
+  proc sql;
+    select distinct samdat1.FLIGHT,
+        samdat1.DATES,
+        DELAY format=2.0
+      from mydblib.SAMDAT1
+      full join mydblib.SAMDAT2 on
+        samdat1.FLIGHT = samdat2.FLIGHT
+      full join mydblib.SAMDAT3 on
+        samdat1.FLIGHT = samdat3.FLIGHT
+    order by DELAY descending;
+  quit;
+%end;
 
  /*==========================*/
  /* LIBNAME Sample 9d        */
  /*==========================*/
+%if (&enginename NE SASIOSLF) %then %do;
+  libname mydblib &dbms &CONNOPT direct_sql=nowhere;
 
-libname mydblib &dbms &CONNOPT direct_sql=nowhere;
+  title 'Libname Sample 9d: Delayed International Flights in March';
 
-title 'Libname Sample 9d: Delayed International Flights in March';
-
-proc sql;
-  select distinct samdat1.FLIGHT,
-      samdat1.DATES,
-      DELAY format=2.0
-    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
-  where samdat1.FLIGHT=samdat2.FLIGHT and
-        samdat1.DATES=samdat2.DATES and
-        samdat1.FLIGHT=samdat3.FLIGHT and
-        DELAY>0
-  order by DELAY descending;
-quit;
+  proc sql;
+    select distinct samdat1.FLIGHT,
+        samdat1.DATES,
+        DELAY format=2.0
+      from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+    where samdat1.FLIGHT=samdat2.FLIGHT and
+          samdat1.DATES=samdat2.DATES and
+          samdat1.FLIGHT=samdat3.FLIGHT and
+          DELAY>0
+    order by DELAY descending;
+  quit;
 
 
- /* turn off debug option */
-options debug=off;
+   /* turn off debug option */
+  options debug=off;
+%end;
 
  /*==========================*/
  /* LIBNAME Sample 10        */
@@ -277,7 +282,7 @@ quit;
  /*                                                                */
  /******************************************************************/
 
-%if (&enginename NE HAWQ and &enginename NE IMPALA) %then %do; 
+%if (&enginename NE HAWQ and &enginename NE IMPALA and &enginename NE SASIOSLF) %then %do; 
  
 	proc sql;
 	  delete from mydblib.SAMDAT7

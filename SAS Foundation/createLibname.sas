@@ -42,11 +42,15 @@ options yearcutoff=1925 ls=120 nodate;
  /* following to specify the authid and database:                     */
  /* authid=???????? and in='database ???????'                         */
  /*                                                                   */
- /* *** For asterdata you will need to specify dimension=yes as shown */
+ /* *** For Asterdata you will need to specify dimension=yes as shown */
  /*     below.  You would remove this for other database references   */
  /*                                                                   */
- /* *** For greenplum you will need to specify delete_mult_rows=yes   */
+ /* *** For Greenplum you will need to specify delete_mult_rows=yes   */
  /*     as shown below.  You would remove this for other database     */
+ /*															          */
+ /* *** For Salesforce, you will need to append a security token to   */
+ /*     your password. For further details and examples, see the      */
+ /*     sample file Salesforce/auth.sas                               */
 
 %let CONNOPT=%str(?????????);
 
