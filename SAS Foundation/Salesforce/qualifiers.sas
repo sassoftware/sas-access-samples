@@ -1,7 +1,7 @@
  /*********************************************************************/
  /*          S A S   S A M P L E   L I B R A R Y                      */
  /*                                                                   */
- /*    NAME: suffix.sas                                               */
+ /*    NAME: qualifiers.sas                                           */
  /*   TITLE: Sample programs showing Salesforce suffix qualifiers     */
  /* PRODUCT: SAS/ACCESS to Salesforce                                 */
  /*  SYSTEM: z/OS, UNIX, WINDOWS                                      */
