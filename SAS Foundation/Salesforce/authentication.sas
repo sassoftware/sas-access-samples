@@ -1,7 +1,7 @@
  /*********************************************************************/
  /*          S A S   S A M P L E   L I B R A R Y                      */
  /*                                                                   */
- /*    NAME: auth.sas                                                 */
+ /*    NAME: authentication.sas                                       */
  /*   TITLE: Authenticate to Salesforce                               */
  /* PRODUCT: SAS/ACCESS to Salesforce                                 */
  /*  SYSTEM: z/OS, UNIX, WINDOWS                                      */
