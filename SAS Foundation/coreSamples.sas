@@ -18,7 +18,7 @@
  /*********************************************************************/
 
  /*=========================*/
- /* LIBNAME Sample 1       */
+ /* LIBNAME Sample 1        */
  /*=========================*/
 
 proc print data=mydblib.SAMDAT7
@@ -28,7 +28,7 @@ proc print data=mydblib.SAMDAT7
 run;
 
  /*=========================*/
- /* LIBNAME Sample 2       */
+ /* LIBNAME Sample 2        */
  /*=========================*/
 
 data work.highwage;
@@ -48,7 +48,7 @@ proc print data=work.highwage;
 run;
 
  /*=========================*/
- /* LIBNAME Sample 3       */
+ /* LIBNAME Sample 3        */
  /*=========================*/
 libname mydblib &dbms &CONNOPT connection=unique;
 data work.combined;
@@ -63,7 +63,7 @@ proc print data=work.combined;
 run;
 
  /*=========================*/
- /* LIBNAME Sample 4       */
+ /* LIBNAME Sample 4        */
  /*=========================*/
 
 data work.payroll;
@@ -78,7 +78,7 @@ proc print data=work.payroll;
 run;
 
  /*=========================*/
- /* LIBNAME Sample 5       */
+ /* LIBNAME Sample 5        */
  /*=========================*/
 title 'Libname Sample 5: Total Salary by Jobcode';
 
@@ -92,7 +92,7 @@ proc sql;
 quit;
 
  /*=========================*/
- /* LIBNAME Sample 6       */
+ /* LIBNAME Sample 6        */
  /*=========================*/
 
 title 'Libname Sample 6: Flights to London and Frankfurt';
@@ -105,7 +105,7 @@ proc sql;
 quit;
 
  /*=========================*/
- /* LIBNAME Sample 7       */
+ /* LIBNAME Sample 7        */
  /*=========================*/
 
 proc sql;
@@ -272,11 +272,11 @@ quit;
  /*==========================*/
 
  /******************************************************************/
- /* SAS/ACCESS interface to Impala and HAWQ users:                 */
- /* Delete not supported, thus Test #12 is omitted for			   */
- /* those databases												   */
- /*																   */
- /* SAS/ACCESS interface to Hadoop users:					       */
+ /* SAS/ACCESS interface to Impala, Salesforce and HAWQ users:     */
+ /* Delete not supported, thus Test #12 is omitted for             */
+ /* those databases                                                */
+ /*                                                                */
+ /* SAS/ACCESS interface to Hadoop users:                          */
  /* Support for delete added post 9.4M3                            */
  /* Hive .14 or higher is needed for this feature                  */
  /*                                                                */
