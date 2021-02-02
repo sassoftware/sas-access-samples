@@ -26,6 +26,7 @@ The following is an index for all of the SAS Foundation SAS/ACCESS sample files.
     * Oracle
     * Postgres
     * Redshift
+    * Snowflake
 
 * orcFileFormat
     * Hadoop
