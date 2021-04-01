@@ -1100,6 +1100,7 @@ drop table MYDBLIB.SAMDAT9;
 drop table MYDBLIB.SAMDAT10;
 drop table MYDBLIB.SAMDAT11;
 drop table MYDBLIB.SAMDAT12;
+drop table MYDBLIB.SAMTEMP;
 
 quit;
 
