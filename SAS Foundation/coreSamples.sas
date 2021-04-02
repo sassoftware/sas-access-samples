@@ -18,7 +18,7 @@
  /*********************************************************************/
 
  /*=========================*/
- /* LIBNAME Sample 1        */
+ /* LIBNAME Sample 1       */
  /*=========================*/
 
 proc print data=mydblib.SAMDAT7
@@ -28,7 +28,7 @@ proc print data=mydblib.SAMDAT7
 run;
 
  /*=========================*/
- /* LIBNAME Sample 2        */
+ /* LIBNAME Sample 2       */
  /*=========================*/
 
 data work.highwage;
@@ -48,7 +48,7 @@ proc print data=work.highwage;
 run;
 
  /*=========================*/
- /* LIBNAME Sample 3        */
+ /* LIBNAME Sample 3       */
  /*=========================*/
 libname mydblib &dbms &CONNOPT connection=unique;
 data work.combined;
@@ -63,7 +63,7 @@ proc print data=work.combined;
 run;
 
  /*=========================*/
- /* LIBNAME Sample 4        */
+ /* LIBNAME Sample 4       */
  /*=========================*/
 
 data work.payroll;
@@ -78,7 +78,7 @@ proc print data=work.payroll;
 run;
 
  /*=========================*/
- /* LIBNAME Sample 5        */
+ /* LIBNAME Sample 5       */
  /*=========================*/
 title 'Libname Sample 5: Total Salary by Jobcode';
 
@@ -92,7 +92,7 @@ proc sql;
 quit;
 
  /*=========================*/
- /* LIBNAME Sample 6        */
+ /* LIBNAME Sample 6       */
  /*=========================*/
 
 title 'Libname Sample 6: Flights to London and Frankfurt';
@@ -105,7 +105,7 @@ proc sql;
 quit;
 
  /*=========================*/
- /* LIBNAME Sample 7        */
+ /* LIBNAME Sample 7       */
  /*=========================*/
 
 proc sql;
@@ -138,92 +138,87 @@ quit;
  /* LIBNAME Sample 9         */
  /*==========================*/
 
-%if (&enginename NE SASIOSLF) %then %do;
-  /* SQL Implicit Passthru ON */
-  libname mydblib &dbms &CONNOPT direct_sql=yes;
-  options debug=dbms_select;
-  title 'Libname Sample 9a: Delayed International Flights in March';
+/* SQL Implicit Passthru ON */
+libname mydblib &dbms &CONNOPT direct_sql=yes;
+options debug=dbms_select;
+title 'Libname Sample 9a: Delayed International Flights in March';
 
-  proc sql;
-    select distinct samdat1.FLIGHT,
-        samdat1.DATES,
-        DELAY format=2.0
-      from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
-    where samdat1.FLIGHT=samdat2.FLIGHT and
-          samdat1.DATES=samdat2.DATES and
-          samdat1.FLIGHT=samdat3.FLIGHT and
-          DELAY>0
-    order by DELAY descending;
-  quit;
-%end;
+proc sql;
+  select distinct samdat1.FLIGHT,
+      samdat1.DATES,
+      DELAY format=2.0
+    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+  where samdat1.FLIGHT=samdat2.FLIGHT and
+        samdat1.DATES=samdat2.DATES and
+        samdat1.FLIGHT=samdat3.FLIGHT and
+        DELAY>0
+  order by DELAY descending;
+quit;
 
  /*==========================*/
  /* LIBNAME Sample 9b        */
  /*==========================*/
-%if (&enginename NE SASIOSLF) %then %do;
-  /* SQL Implicit Passthru OFF */
-  libname mydblib &dbms &CONNOPT direct_sql=no;
 
-  title 'Libname Sample 9b: Delayed International Flights in March';
+/* SQL Implicit Passthru OFF */
+libname mydblib &dbms &CONNOPT direct_sql=no;
 
-  proc sql;
-    select distinct samdat1.FLIGHT,
-        samdat1.DATES,
-        DELAY format=2.0
-      from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
-    where samdat1.FLIGHT=samdat2.FLIGHT and
-          samdat1.DATES=samdat2.DATES and
-          samdat1.FLIGHT=samdat3.FLIGHT and
-          DELAY>0
-    order by DELAY descending;
-  quit;
-%end;
+title 'Libname Sample 9b: Delayed International Flights in March';
+
+proc sql;
+  select distinct samdat1.FLIGHT,
+      samdat1.DATES,
+      DELAY format=2.0
+    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+  where samdat1.FLIGHT=samdat2.FLIGHT and
+        samdat1.DATES=samdat2.DATES and
+        samdat1.FLIGHT=samdat3.FLIGHT and
+        DELAY>0
+  order by DELAY descending;
+quit;
 
  /*==========================*/
  /* LIBNAME Sample 9c        */
  /*==========================*/
-%if (&enginename NE SASIOSLF) %then %do;
-  libname mydblib &dbms &CONNOPT direct_sql=nomultoutjoins;
 
-  title 'Libname Sample 9c: Delayed International Flights in March';
+libname mydblib &dbms &CONNOPT direct_sql=nomultoutjoins;
 
-  proc sql;
-    select distinct samdat1.FLIGHT,
-        samdat1.DATES,
-        DELAY format=2.0
-      from mydblib.SAMDAT1
-      full join mydblib.SAMDAT2 on
-        samdat1.FLIGHT = samdat2.FLIGHT
-      full join mydblib.SAMDAT3 on
-        samdat1.FLIGHT = samdat3.FLIGHT
-    order by DELAY descending;
-  quit;
-%end;
+title 'Libname Sample 9c: Delayed International Flights in March';
+
+proc sql;
+  select distinct samdat1.FLIGHT,
+      samdat1.DATES,
+      DELAY format=2.0
+    from mydblib.SAMDAT1
+    full join mydblib.SAMDAT2 on
+      samdat1.FLIGHT = samdat2.FLIGHT
+    full join mydblib.SAMDAT3 on
+      samdat1.FLIGHT = samdat3.FLIGHT
+  order by DELAY descending;
+quit;
 
  /*==========================*/
  /* LIBNAME Sample 9d        */
  /*==========================*/
-%if (&enginename NE SASIOSLF) %then %do;
-  libname mydblib &dbms &CONNOPT direct_sql=nowhere;
 
-  title 'Libname Sample 9d: Delayed International Flights in March';
+libname mydblib &dbms &CONNOPT direct_sql=nowhere;
 
-  proc sql;
-    select distinct samdat1.FLIGHT,
-        samdat1.DATES,
-        DELAY format=2.0
-      from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
-    where samdat1.FLIGHT=samdat2.FLIGHT and
-          samdat1.DATES=samdat2.DATES and
-          samdat1.FLIGHT=samdat3.FLIGHT and
-          DELAY>0
-    order by DELAY descending;
-  quit;
+title 'Libname Sample 9d: Delayed International Flights in March';
+
+proc sql;
+  select distinct samdat1.FLIGHT,
+      samdat1.DATES,
+      DELAY format=2.0
+    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+  where samdat1.FLIGHT=samdat2.FLIGHT and
+        samdat1.DATES=samdat2.DATES and
+        samdat1.FLIGHT=samdat3.FLIGHT and
+        DELAY>0
+  order by DELAY descending;
+quit;
 
 
-   /* turn off debug option */
-  options debug=off;
-%end;
+ /* turn off debug option */
+options debug=off;
 
  /*==========================*/
  /* LIBNAME Sample 10        */
@@ -272,17 +267,17 @@ quit;
  /*==========================*/
 
  /******************************************************************/
- /* SAS/ACCESS interface to Impala, Salesforce and HAWQ users:     */
- /* Delete not supported, thus Test #12 is omitted for             */
- /* those databases                                                */
- /*                                                                */
- /* SAS/ACCESS interface to Hadoop users:                          */
+ /* SAS/ACCESS interface to Impala and HAWQ users:                 */
+ /* Delete not supported, thus Test #12 is omitted for			   */
+ /* those databases												   */
+ /*																   */
+ /* SAS/ACCESS interface to Hadoop users:					       */
  /* Support for delete added post 9.4M3                            */
  /* Hive .14 or higher is needed for this feature                  */
  /*                                                                */
  /******************************************************************/
 
-%if (&enginename NE HAWQ and &enginename NE IMPALA and &enginename NE SASIOSLF) %then %do; 
+%if (&enginename NE HAWQ and &enginename NE IMPALA) %then %do; 
  
 	proc sql;
 	  delete from mydblib.SAMDAT7
@@ -379,6 +374,15 @@ proc print data=work.ranked;
 run;
 
  /*==========================*/
+ /* LIBNAME Sample 17a        */
+ /*==========================*/
+ 
+data mydblib.SAMTEMP;
+ set mydblib.SAMDAT2;
+run; 
+proc delete data=mydblib.SAMTEMP; run;
+
+ /*==========================*/
  /* LIBNAME Sample 18        */
  /*==========================*/
 
@@ -423,7 +427,7 @@ title 'Libname Sample 21: High Bills--Not Paid';
 proc sql;
   create view work.allinv as
   select PAIDON, BILLEDON, INVNUM, AMTINUS, BILLEDTO
-    from mydblib.SAMDAT9;
+    from mydblib.SAMDAT9 (obs=5);
 quit;
 
 data work.notpaid(keep=INVNUM BILLEDTO AMTINUS BILLEDON);
@@ -459,3 +463,47 @@ proc sql;
     where emp_csr.EMPID=samdat13.FAMILYID;
 
 quit;
+
+/*==========================*/
+ /* LIBNAME Sample 23       */
+ /*==========================*/
+
+title 'Libname Sample 23: FedSql Dictionary Tables';
+
+ 
+proc fedsql;
+select * from dictionary.tables where table_name='SAMDAT1';
+create table work.flight as
+           select st.flight,st.dates,st.orig, st.dest from mydblib.SAMDAT1 as st
+           where dest='WAS';
+quit;
+
+
+ /*==========================*/
+ /* LIBNAME Sample 24       */
+ /*==========================*/
+ 
+ 
+title 'Libname Sample 24: Passthru With Connect Using'; 
+
+proc sql noerrorstop;
+connect using mydblib;
+execute ( create table SAMTEMP( col1 int,TAB1_C1 char(3),
+col2 int,col3 int
+ ) ) by mydblib;
+execute ( insert into SAMTEMP values (101,'pup',103,104)
+        ) by mydblib;
+quit;
+
+proc sql noerrorstop;
+connect using mydblib;
+select * from connection to mydblib
+ ( select * from SAMTEMP );
+quit;
+
+proc sql noerrorstop;
+connect using mydblib;
+execute ( drop table SAMTEMP ) by mydblib;		
+quit;
+run;
+
