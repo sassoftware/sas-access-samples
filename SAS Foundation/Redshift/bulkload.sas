@@ -56,14 +56,17 @@ buddy 66 m 101432
 run;
 
 
- /************************************/
- /* CREATE DBMS TABLE WITH BULKLOAD  */
- /************************************/
+ /**************************************/
+ /* CREATE DBMS TABLE WITH BULKLOAD    */
+ /* USE &MYBUCKET FOR YOUR AWS BUCKET  */
+ /***************************************/
+
+%LET mybucket= ; 
 
 
 proc sql;
-create table mydblib.NEBLKTAB (BULKLOAD=YES  BL_USE_PIPE=NO
-                         BL_DELETE_DATAFILE=NO )
+create table mydblib.NEBLKTAB (BULKLOAD=YES 
+                         BL_BUCKET="&mybucket")
  as select * from work.NEBLKDAT;
 quit;
 
