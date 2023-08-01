@@ -8,7 +8,7 @@
 | --------------------------------- | ------------------ | -------------- |
 | AWS Athena                        |                    |                |
 | Denodo                            |                    |                |
-| [SQream](/SQream/README.md)       | 2023-07-31 | sqream-jdbc-4.5.9 |
+| [SQream](SQream/README.md)       | 2023-07-31 | sqream-jdbc-4.5.9 |
 
 ## Getting Started
 
