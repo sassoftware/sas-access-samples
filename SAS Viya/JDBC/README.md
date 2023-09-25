@@ -7,7 +7,7 @@
 | Database                          | Smoke Testing Date | Driver Version |
 | --------------------------------- | ------------------ | -------------- |
 | AWS Athena                        |                    |                |
-| Denodo                            |                    |                |
+| [Denono](Denodo/README.md)                           |                    | denodo-vdp-jdbcdriver-8.0-update-20230301.jar |
 | [SQream](SQream/README.md)       | 2023-07-31 | sqream-jdbc-4.5.9 |
 
 ## Getting Started
