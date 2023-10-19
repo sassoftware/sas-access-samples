@@ -72,6 +72,7 @@ caslib _all_ assign;
 ## Smoke Testing
 
 This section explains how to perform a smoke test to ensure that the connection is working correctly. A smoke test is a quick and simple test that verifies that the basic functionality of the connection is working as expected.
+
 |            Smoke Tests                           |                      |     |
 | ------------------------------------- | -------------------- | --- |
 | [**Table Creation Tests**](https://gitlab.sas.com/dae/sas-access-samples/-/tree/master/SAS%20Viya/JDBC#table-creation-tests) | | |
@@ -86,7 +87,7 @@ This section explains how to perform a smoke test to ensure that the connection 
 | [**Implicit SQL Test**](https://gitlab.sas.com/dae/sas-access-samples/-/tree/master/SAS%20Viya/JDBC#implicit-sql-tests) | | &check; |
 | [**FEDSql Test**](https://gitlab.sas.com/dae/sas-access-samples/-/tree/master/SAS%20Viya/JDBC#fedsql-test) | | &check; |
 | **Information Catalog Crawler Agent** | | |
-| **Information Catalog Crawler Agent** | CAS Library Based Discovery Agent                     | &check; |
+|                                       | CAS Library Based Discovery Agent                     | &check; |
 |                                       | SAS Compute Library Based Discovery Agent                     | &check; |
 ## Troubleshooting
 
