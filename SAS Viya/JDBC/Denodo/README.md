@@ -69,17 +69,17 @@ caslib mycaslib desc='JDBC Caslib'
 This section explains how to perform a smoke test to ensure that the connection is working correctly. A smoke test is a quick and simple test that verifies that the basic functionality of the connection is working as expected.
 |            Smoke Tests                           |                      |     |
 | ------------------------------------- | -------------------- | --- |
-| [**Table Creation Tests**](../JDBC#table-creation-tests)              |       |     |
+| [**Table Creation Tests**](..#table-creation-tests)              |       |     |
 |                                       | Create Airline Table | PASS    |
 |                                       | Create Cars Table    | PASS  |
-| [**Proc SQL Tests**](../JDBC#proc-sql-tests)                    |                      |     |
+| [**Proc SQL Tests**](..#proc-sql-tests)                    |                      |     |
 |                                       | Create Table         |  PASS   |
 |                                       | Update Table         |  FAIL (Expected)   |
 |                                       | Delete Table         |  FAIL (Expected)   |
 |                                       | Insert into Table    |  PASS   |
 |                                       | Drop Table           |  PASS   |
-| [**Implicit SQL Test**](../JDBC#implicit-sql-tests)                 | *                     | PASS    |
-| [**FEDSql Test**](../JDBC#fedsql-test)                     | *                    |  FAIL MYLIB.CLASS does not exist   |
+| [**Implicit SQL Test**](..#implicit-sql-tests)                 | *                     | PASS    |
+| [**FEDSql Test**](..#fedsql-test)                     | *                    |  FAIL MYLIB.CLASS does not exist   |
 | **Information Catalog Crawler Agent** | *                     |  N/A   |
 
 ## Troubleshooting
