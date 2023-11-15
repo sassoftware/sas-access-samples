@@ -75,17 +75,17 @@ This section explains how to perform a smoke test to ensure that the connection 
 
 |            Smoke Tests                           |                      |     |
 | ------------------------------------- | -------------------- | --- |
-| [**Table Creation Tests**](https://gitlab.sas.com/dae/sas-access-samples/-/tree/master/SAS%20Viya/JDBC#table-creation-tests) | | |
+| [**Table Creation Tests**](..#table-creation-tests) | | |
 |                                       | Create Airline Table | &check; |
 |                                       | Create Cars Table    | &check; |
-| [**Proc SQL Tests**](https://gitlab.sas.com/dae/sas-access-samples/-/tree/master/SAS%20Viya/JDBC#proc-sql-tests) | | |
+| [**Proc SQL Tests**](..#proc-sql-tests) | | |
 |                                       | Create Table         | &check; |
 |                                       | Update Table         | &check; |
 |                                       | Delete Table         | &check; |
 |                                       | Insert into Table    | &check; |
 |                                       | Drop Table           | &check; |
-| [**Implicit SQL Test**](https://gitlab.sas.com/dae/sas-access-samples/-/tree/master/SAS%20Viya/JDBC#implicit-sql-tests) | | &check; |
-| [**FEDSql Test**](https://gitlab.sas.com/dae/sas-access-samples/-/tree/master/SAS%20Viya/JDBC#fedsql-test) | | &check; |
+| [**Implicit SQL Test**](..#implicit-sql-tests) | | &check; |
+| [**FEDSql Test**](..#fedsql-test) | | &check; |
 | **Information Catalog Crawler Agent** | | |
 |                                       | CAS Library Based Discovery Agent                     | &check; |
 |                                       | SAS Compute Library Based Discovery Agent                     | &check; |

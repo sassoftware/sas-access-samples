@@ -70,19 +70,19 @@ caslib mycaslib desc='JDBC Caslib'
 
 This section explains how to perform a smoke test to ensure that the connection is working correctly. A smoke test is a quick and simple test that verifies that the basic functionality of the connection is working as expected.
 
-| Table Creation Tests                  |                      |     |
+| [**Table Creation Tests**](..#table-creation-tests)                  |                      |     |
 | ------------------------------------- | -------------------- | --- |
-|                                       | Create Airline Table | Passed  |
-|                                       | Create Cars Table    | Passed  |
-| **Proc SQL Tests**                    |                      |     |
-|                                       | Create Table         | Passed  |
-|                                       | Update Table         | Passed  |
-|                                       | Delete Table         | Passed  |
-|                                       | Insert into Table    | Passed  |
-|                                       | Drop Table           | Passed  |
-| **Implicit SQL Test**                 |                      | Passed  |
-| **FEDSql Test**                       |                      | Passed  |
-| **Information Catalog Crawler Agent** |                      | Passed  |
+|                                       | Create Airline Table | &check;  |
+|                                       | Create Cars Table    | &check;  |
+| [**Proc SQL Tests**](..#proc-sql-tests)                    |                      |     |
+|                                       | Create Table         | &check;  |
+|                                       | Update Table         | &check;  |
+|                                       | Delete Table         | &check;  |
+|                                       | Insert into Table    | &check;  |
+|                                       | Drop Table           | &check;  |
+| [**Implicit SQL Test**](..#implicit-sql-tests)               |                      | &check;  |
+| [**FEDSql Test**](..#fedsql-test)                      |                      | &check;  |
+| **Information Catalog Crawler Agent** |                      | &check;  |
 
 ## Troubleshooting
 

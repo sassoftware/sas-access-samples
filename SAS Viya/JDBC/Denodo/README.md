@@ -70,16 +70,16 @@ This section explains how to perform a smoke test to ensure that the connection 
 |            Smoke Tests                           |                      |     |
 | ------------------------------------- | -------------------- | --- |
 | [**Table Creation Tests**](..#table-creation-tests)              |       |     |
-|                                       | Create Airline Table | PASS    |
-|                                       | Create Cars Table    | PASS  |
+|                                       | Create Airline Table | &check; |
+|                                       | Create Cars Table    | &check;  |
 | [**Proc SQL Tests**](..#proc-sql-tests)                    |                      |     |
-|                                       | Create Table         |  PASS   |
-|                                       | Update Table         |  FAIL (Expected)   |
-|                                       | Delete Table         |  FAIL (Expected)   |
-|                                       | Insert into Table    |  PASS   |
-|                                       | Drop Table           |  PASS   |
-| [**Implicit SQL Test**](..#implicit-sql-tests)                 | *                     | PASS    |
-| [**FEDSql Test**](..#fedsql-test)                     | *                    |  FAIL MYLIB.CLASS does not exist   |
+|                                       | Create Table         |  &check;   |
+|                                       | Update Table         |  X (Expected)   |
+|                                       | Delete Table         |  X (Expected)   |
+|                                       | Insert into Table    |  &check;   |
+|                                       | Drop Table           |  &check;   |
+| [**Implicit SQL Test**](..#implicit-sql-tests)                 | *                     | &check;    |
+| [**FEDSql Test**](..#fedsql-test)                     | *                    |  X MYLIB.CLASS does not exist   |
 | **Information Catalog Crawler Agent** | *                     |  N/A   |
 
 ## Troubleshooting
