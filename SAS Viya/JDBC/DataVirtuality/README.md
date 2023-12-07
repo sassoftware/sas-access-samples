@@ -34,25 +34,25 @@ Before you can connect to Data Virtuality through JDBC from SAS Viya, you need t
 | -------------------- | --------------------------------------------------------------------------------- |
 | **Company URL**     | [https://datavirtuality.com/en](https://datavirtuality.com/en)                                                               |
 | **JDBC JAR File Path**   | [datavirtuality-jdbc_4.0.3.jar](https://datavirtuality.com/wp-content/uploads/2023/07/datavirtuality-jdbc_4.0.3.jar)                        |
-| **JDBC URL Syntax** | jdbc:datavirtuality:datavirtuality@mms://aws-us-east-1.platform.datavirtuality.com                                           |
+| **JDBC URL Syntax** | jdbc:datavirtuality:datavirtuality@mms://<hostname>                                           |
 | **Default Port**    | 45012                                                                            |
 | **JDBC Driver Class Name**      | com.Data Virtuality.vdp.jdbc.Driver                                                       |
 ## Setting up the connection
 
-This section provides step-by-step instructions on how to set up the connection to SQream using JDBC from SAS Viya Compute or CAS.
+This section provides step-by-step instructions on how to set up the connection to Data Virtuality using JDBC from SAS Viya Compute or CAS.
 
 - SAS Compute Library creation
 
 ```sas
 libname mylib jdbc
   driverclass="com.datavirtuality.dv.jdbc.Driver"
-  url="jdbc:datavirtuality:datavirtuality@mms://url:45012"
-  schema="schema"
-  user="usr"
-  password="pass"
+  url="jdbc:datavirtuality:datavirtuality@mms://<hostname>:45012"
+  schema="myschema"
+  user="myuser"
+  password="mypw"
   preserve_tab_names=yes
   preserve_col_names=yes;
-  materialized=yes;  //Allows for permanment table creation
+  /*materialized=yes; //Allows for permanment table creation */
 ```
 
 - CAS Library creation
@@ -62,10 +62,10 @@ cas;
 caslib dvcas desc='JDBC Caslib'
    dataSource=(srctype='jdbc',
                 driverclass="com.datavirtuality.dv.jdbc.Driver",
-                url="jdbc:datavirtuality:datavirtuality@mms://url:45012",
-                user="usr",
-                password="pass",
-                schema="schema");
+                url="jdbc:datavirtuality:datavirtuality@mms://<hostname>:45012",
+                schema="myschema",
+                user="myuser",
+                password="mypw");
 caslib _all_ assign;
 ```
 ``

@@ -9,6 +9,8 @@
 | [Data Virtuality](DataVirtuality/README.md)                        | 2023-10-19 | datavirtuality-jdbc_4.0.3.jar |
 | [Denodo](Denodo/README.md)                           | 2023-07-31 | denodo-vdp-jdbcdriver-8.0-update-20230301.jar |
 | [SQream](SQream/README.md)       | 2023-07-31 | sqream-jdbc-4.5.9 |
+| [Trino](Trino/README.md)       | In progress | trino-jdbc-434.jar |
+
 
 ## Getting Started
 
