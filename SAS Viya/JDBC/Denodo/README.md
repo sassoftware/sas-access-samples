@@ -45,11 +45,11 @@ This section provides step-by-step instructions on how to set up the connection 
 ```sas
 libname mylib jdbc
   driverclass="com.denodo.vdb.jdbcdriver.VDBJDBCDriver"
-  URL="jdbc:denodo://denodo-server.com:9999/admin?ssl=true"
-  user="usr"
-  password="pass"
+  URL="jdbc:denodo://<hostname>:9999/<databasenName>?ssl=true"
   schema="default"
-  materialized=yes;  //Allows for permanment table creation
+  user="myuser"
+  password="mypw";
+/*materialized=yes; //Allows for permanment table creation */
 ```
 
 - CAS Library creation
@@ -58,10 +58,10 @@ libname mylib jdbc
 caslib mycaslib desc='JDBC Caslib'
    dataSource=(srctype='jdbc',
                 driverclass="com.denodo.vdb.jdbcdriver.VDBJDBCDriver",
-                url="jdbc:denodo://denodo-server.com:9999/admin?ssl=true",
-                user="usr",
-                password="pass",
-                schema="default");
+                url="jdbc:denodo://<hostname>:9999/<databasenName>?ssl=true",
+                schema="default"
+                user="myuser",
+                password="mypw");
 ```
 ``
 ## Smoke Testing
