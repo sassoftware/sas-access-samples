@@ -23,6 +23,9 @@
   /*   CREATE THE DATA FILE FOR THE SAMDAT1 TABLE           */
   /*--------------------------------------------------------*/
 
+LIBNAME samples '/home/u63846711/samples';
+
+
 data samples.samdat1;
    input FLIGHT $3. +5 DATES date7. +3 DEPART time5. +2 ORIG $3.
          +3 DEST $3.  +7 MILES +6 BOARDED +6 CAPACITY;
@@ -30,51 +33,52 @@ data samples.samdat1;
    informat DATES date7. DEPART time5.;
    datalines;
 114     01MAR98    7:10  LGA   LAX       2475       172       210
-202     01MAR98   10:43  LGA   ORD        740       151       210
-219     01MAR98    9:31  LGA   LON       3442       198       250
-622     01MAR98   12:19  LGA   FRA       3857       207       250
-132     01MAR98   15:35  LGA   YYZ        366       115       178
-271     01MAR98   13:17  LGA   PAR       3635       138       250
-302     01MAR98   20:22  LGA   WAS        229       105       180
 114     02MAR98    7:10  LGA   LAX       2475       119       210
-202     02MAR98   10:43  LGA   ORD        740       120       210
-219     02MAR98    9:31  LGA   LON       3442       147       250
-622     02MAR98   12:19  LGA   FRA       3857       176       250
-132     02MAR98   15:35  LGA   YYZ        366       106       178
-302     02MAR98   20:22  LGA   WAS        229        78       180
-271     02MAR98   13:17  LGA   PAR       3635       104       250
 114     03MAR98    7:10  LGA   LAX       2475       197       210
-202     03MAR98   10:43  LGA   ORD        740       118       210
-219     03MAR98    9:31  LGA   LON       3442       197       250
-622     03MAR98   12:19  LGA   FRA       3857       180       250
-132     03MAR98   15:35  LGA   YYZ        366        75       178
-271     03MAR98   13:17  LGA   PAR       3635       147       250
-302     03MAR98   20:22  LGA   WAS        229       123       180
 114     04MAR98    7:10  LGA   LAX       2475       178       210
-202     04MAR98   10:43  LGA   ORD        740       148       210
-219     04MAR98    9:31  LGA   LON       3442       232       250
-622     04MAR98   12:19  LGA   FRA       3857       137       250
-132     04MAR98   15:35  LGA   YYZ        366       117       178
-271     04MAR98   13:17  LGA   PAR       3635       146       250
-302     04MAR98   20:22  LGA   WAS        229       115       180
 114     05MAR98    7:10  LGA   LAX       2475       117       210
-202     05MAR98   10:43  LGA   ORD        740       104       210
-219     05MAR98    9:31  LGA   LON       3442       160       250
-622     05MAR98   12:19  LGA   FRA       3857       185       250
-132     05MAR98   15:35  LGA   YYZ        366       157       178
-271     05MAR98   13:17  LGA   PAR       3635       177       250
 114     06MAR98    7:10  LGA   LAX       2475       128       210
-202     06MAR98   10:43  LGA   ORD        740       115       210
-219     06MAR98    9:31  LGA   LON       3442       163       250
-132     06MAR98   15:35  LGA   YYZ        366       150       178
-302     06MAR98   20:22  LGA   WAS        229        66       180
 114     07MAR98    7:10  LGA   LAX       2475       160       210
-202     07MAR98   10:43  LGA   ORD        740       175       210
-219     07MAR98    9:31  LGA   LON       3442       241       250
-622     07MAR98   12:19  LGA   FRA       3857       210       250
+132     01MAR98   15:35  LGA   YYZ        366       115       178
+132     02MAR98   15:35  LGA   YYZ        366       106       178
+132     03MAR98   15:35  LGA   YYZ        366        75       178
+132     04MAR98   15:35  LGA   YYZ        366       117       178
+132     05MAR98   15:35  LGA   YYZ        366       157       178
+132     06MAR98   15:35  LGA   YYZ        366       150       178
 132     07MAR98   15:35  LGA   YYZ        366       164       178
+202     01MAR98   10:43  LGA   ORD        740       151       210
+202     02MAR98   10:43  LGA   ORD        740       120       210
+202     03MAR98   10:43  LGA   ORD        740       118       210
+202     04MAR98   10:43  LGA   ORD        740       148       210
+202     05MAR98   10:43  LGA   ORD        740       104       210
+202     06MAR98   10:43  LGA   ORD        740       115       210
+202     07MAR98   10:43  LGA   ORD        740       175       210
+219     01MAR98    9:31  LGA   LON       3442       198       250
+219     02MAR98    9:31  LGA   LON       3442       147       250
+219     03MAR98    9:31  LGA   LON       3442       197       250
+219     04MAR98    9:31  LGA   LON       3442       232       250
+219     05MAR98    9:31  LGA   LON       3442       160       250
+219     06MAR98    9:31  LGA   LON       3442       163       250
+219     07MAR98    9:31  LGA   LON       3442       241       250
+271     01MAR98   13:17  LGA   PAR       3635       138       250
+271     02MAR98   13:17  LGA   PAR       3635       104       250
+271     03MAR98   13:17  LGA   PAR       3635       147       250
+271     04MAR98   13:17  LGA   PAR       3635       146       250
+271     05MAR98   13:17  LGA   PAR       3635       177       250
 271     07MAR98   13:17  LGA   PAR       3635       155       250
+302     01MAR98   20:22  LGA   WAS        229       105       180
+302     02MAR98   20:22  LGA   WAS        229        78       180
+302     03MAR98   20:22  LGA   WAS        229       123       180
+302     04MAR98   20:22  LGA   WAS        229       115       180
+302     06MAR98   20:22  LGA   WAS        229        66       180
 302     07MAR98   20:22  LGA   WAS        229       135       180
+622     01MAR98   12:19  LGA   FRA       3857       207       250
+622     02MAR98   12:19  LGA   FRA       3857       176       250
+622     03MAR98   12:19  LGA   FRA       3857       180       250
+622     04MAR98   12:19  LGA   FRA       3857       137       250
+622     05MAR98   12:19  LGA   FRA       3857       185       250
+622     07MAR98   12:19  LGA   FRA       3857       210       250
+
 ;
 
 proc sql outobs=15;
@@ -365,154 +369,154 @@ data samples.samdat5;
    informat BIRTH date7. HIRED date7.;
    format BIRTH date9. HIRED date9.;
    datalines;
-1919   M    TA2         34376  12SEP60  04JUN87
-1653   F    ME2         35108  15OCT64  09AUG90
-1400   M    ME1         29769  05NOV67  16OCT90
-1350   F    FA3         32886  31AUG65  29JUL90
-1401   M    TA3         38822  13DEC50  17NOV85
-1499   M    ME3         43025  26APR54  07JUN80
-1101   M    SCP         18723  06JUN62  01OCT90
-1333   M    PT2         88606  30MAR61  10FEB81
-1402   M    TA2         32615  17JAN63  02DEC90
-1479   F    TA3         38785  22DEC68  05OCT89
-1403   M    ME1         28072  28JAN69  21DEC91
-1739   M    PT1         66517  25DEC64  27JAN91
-1658   M    SCP         17943  08APR67  29FEB92
-1428   F    PT1         68767  04APR60  16NOV91
-1782   M    ME2         35345  04DEC70  22FEB92
-1244   M    ME2         36925  31AUG63  17JAN88
-1383   M    BCK         25823  25JAN68  20OCT92
-1574   M    FA2         28572  27APR60  20DEC92
-1789   M    SCP         18326  25JAN57  11APR78
-1404   M    PT2         91376  24FEB53  01JAN80
-1437   F    FA3         33104  20SEP60  31AUG84
-1639   F    TA3         40260  26JUN57  28JAN84
-1269   M    NA1         41690  03MAY72  28NOV92
-1065   M    ME2         35090  26JAN44  07JAN87
-1876   M    TA3         39675  20MAY58  27APR85
+1009   M    TA1         28880  02MAR59  26MAR92
+1017   M    TA3         40858  28DEC57  16OCT81
+1036   F    TA3         39392  19MAY65  23OCT84
 1037   F    TA1         28558  10APR64  13SEP92
-1129   F    ME2         34929  08DEC61  17AUG91
-1988   M    FA3         32217  30NOV59  18SEP84
-1405   M    SCP         18056  05MAR66  26JAN92
-1430   F    TA2         32925  28FEB62  27APR87
-1983   F    FA3         33419  28FEB62  27APR87
-1134   F    TA2         33462  05MAR69  21DEC88
-1118   M    PT3        111379  16JAN44  18DEC80
-1438   F    TA3         39223  15MAR65  18NOV87
-1125   F    FA2         28888  08NOV68  11DEC87
-1475   F    FA2         27787  15DEC61  13JUL90
-1117   M    TA3         39771  05JUN63  13AUG92
-1935   F    NA2         51081  28MAR54  16OCT81
-1124   F    FA1         23177  10JUL58  01OCT90
-1422   F    FA1         22454  04JUN64  06APR91
-1616   F    TA2         34137  01MAR70  04JUN93
-1406   M    ME2         35185  08MAR61  17FEB87
-1120   M    ME1         28619  11SEP72  07OCT93
+1038   F    TA1         26533  09NOV69  23NOV91
+1050   M    ME2         35167  14JUL63  24AUG86
+1065   M    ME2         35090  26JAN44  07JAN87
+1076   M    PT1         66558  14OCT55  03OCT91
 1094   M    FA1         22268  02APR70  17APR91
-1389   M    BCK         25028  15JUL59  18AUG90
-1905   M    PT1         65111  16APR72  29MAY92
-1407   M    PT1         68096  23MAR69  18MAR90
-1114   F    TA2         32928  18SEP69  27JUN87
-1410   M    PT2         84685  03MAY67  07NOV86
-1439   F    PT1         70736  06MAR64  10SEP90
-1409   M    ME3         41551  19APR50  22OCT81
-1408   M    TA2         34138  29MAR60  14OCT87
-1121   M    ME1         29112  26SEP71  07DEC91
-1991   F    TA1         27645  07MAY72  12DEC92
+1100   M    BCK         25004  01DEC60  07MAY88
+1101   M    SCP         18723  06JUN62  01OCT90
 1102   M    TA2         34542  01OCT59  15APR91
-1356   M    ME2         36869  26SEP57  22FEB83
-1545   M    PT1         66130  12AUG59  29MAY90
+1103   F    FA1         23738  16FEB68  23JUL92
+1104   M    SCP         17946  25APR63  10JUN91
+1105   M    ME2         34805  01MAR62  13AUG90
+1106   M    PT2         89632  06NOV57  16AUG84
+1107   M    PT2         89977  09JUN54  10FEB79
+1111   M    NA1         40586  14JUL73  31OCT92
+1112   M    TA1         26905  29NOV64  07DEC92
+1113   F    FA1         22367  15JAN68  17OCT91
+1114   F    TA2         32928  18SEP69  27JUN87
+1115   F    FA3         32699  22AUG60  29FEB80
+1116   F    FA1         22862  28SEP69  21MAR91
+1117   M    TA3         39771  05JUN63  13AUG92
+1118   M    PT3        111379  16JAN44  18DEC80
+1119   M    TA1         26924  20JUN62  06SEP88
+1120   M    ME1         28619  11SEP72  07OCT93
+1121   M    ME1         29112  26SEP71  07DEC91
+1122   F    FA2         27956  01MAY63  27NOV88
+1123   F    TA1         28407  31OCT72  05DEC92
+1124   F    FA1         23177  10JUL58  01OCT90
+1125   F    FA2         28888  08NOV68  11DEC87
+1126   F    TA3         40899  28MAY63  21NOV80
+1127   F    TA2         33011  09NOV64  07DEC86
+1128   F    TA2         32777  23MAY65  20OCT90
+1129   F    ME2         34929  08DEC61  17AUG91
+1130   F    FA1         23916  16MAY71  05JUN92
+1131   F    TA2         32575  26DEC71  19APR91
+1132   F    FA1         22413  30MAY72  22OCT93
+1133   M    TA1         27701  13JUL66  12FEB92
+1134   F    TA2         33462  05MAR69  21DEC88
+1135   F    FA2         27321  20SEP60  31MAR90
+1200   F    ME1         27816  10JAN71  14AUG92
+1221   F    FA2         27896  22SEP67  04OCT91
+1244   M    ME2         36925  31AUG63  17JAN88
+1269   M    NA1         41690  03MAY72  28NOV92
 1292   F    ME2         36691  28OCT64  02JUL89
-1440   F    ME2         35757  27SEP62  09APR91
+1332   M    NA1         42178  17SEP70  04JUN91
+1333   M    PT2         88606  30MAR61  10FEB81
+1347   M    TA3         40079  21SEP67  06SEP84
+1350   F    FA3         32886  31AUG65  29JUL90
+1352   M    NA2         53798  02DEC60  16OCT86
+1354   F    SCP         18335  29MAY71  16JUN92
+1356   M    ME2         36869  26SEP57  22FEB83
 1368   M    FA2         27808  11JUN61  03NOV84
 1369   M    TA2         33705  28DEC61  13MAR87
-1411   M    FA2         27265  27MAY61  01DEC89
-1113   F    FA1         22367  15JAN68  17OCT91
-1704   M    BCK         25465  30AUG66  28JUN87
-1900   M    ME2         35105  25MAY62  27OCT87
-1126   F    TA3         40899  28MAY63  21NOV80
-1677   M    BCK         26007  05NOV63  27MAR89
-1441   F    FA2         27158  19NOV69  23MAR91
-1421   M    TA2         33155  08JAN59  28FEB90
-1119   M    TA1         26924  20JUN62  06SEP88
-1834   M    BCK         26896  08FEB72  02JUL92
-1777   M    PT3        109630  23SEP51  21JUN81
-1663   M    BCK         26452  11JAN67  11AUG91
-1106   M    PT2         89632  06NOV57  16AUG84
-1103   F    FA1         23738  16FEB68  23JUL92
-1477   M    FA2         28566  21MAR64  07MAR88
-1476   F    TA2         34803  30MAY66  17MAR87
 1379   M    ME3         42264  08AUG61  10JUN84
-1104   M    SCP         17946  25APR63  10JUN91
-1009   M    TA1         28880  02MAR59  26MAR92
-1412   M    ME1         27799  18JUN56  05DEC91
-1115   F    FA3         32699  22AUG60  29FEB80
-1128   F    TA2         32777  23MAY65  20OCT90
-1442   F    PT2         84536  05SEP66  12APR88
-1417   M    NA2         52270  27JUN64  07MAR89
-1478   M    PT2         84203  09AUG59  24OCT90
-1673   M    BCK         25477  27FEB70  15JUL91
-1839   F    NA1         43433  29NOV70  03JUL93
-1347   M    TA3         40079  21SEP67  06SEP84
-1423   F    ME2         35773  14MAY68  19AUG90
-1200   F    ME1         27816  10JAN71  14AUG92
-1970   F    FA1         22615  25SEP64  12MAR91
-1521   M    ME3         41526  12APR63  13JUL88
-1354   F    SCP         18335  29MAY71  16JUN92
-1424   F    FA2         28978  04AUG69  11DEC89
-1132   F    FA1         22413  30MAY72  22OCT93
-1845   M    BCK         25996  20NOV59  22MAR80
-1556   M    PT1         71349  22JUN64  11DEC91
-1413   M    FA2         27435  16SEP65  02JAN90
-1123   F    TA1         28407  31OCT72  05DEC92
-1907   M    TA2         33329  15NOV60  06JUL87
-1436   F    TA2         34475  11JUN64  12MAR87
+1383   M    BCK         25823  25JAN68  20OCT92
 1385   M    ME3         43900  16JAN62  01APR86
-1432   F    ME2         35327  03NOV61  10FEB85
-1111   M    NA1         40586  14JUL73  31OCT92
-1116   F    FA1         22862  28SEP69  21MAR91
-1352   M    NA2         53798  02DEC60  16OCT86
-1555   F    FA2         27499  16MAR68  04JUL92
-1038   F    TA1         26533  09NOV69  23NOV91
-1420   M    ME3         43071  19FEB65  22JUL87
-1561   M    TA2         34514  30NOV63  07OCT87
-1434   F    FA2         28622  11JUL62  28OCT90
-1414   M    FA1         23644  24MAR72  12APR92
-1112   M    TA1         26905  29NOV64  07DEC92
+1389   M    BCK         25028  15JUL59  18AUG90
 1390   M    FA2         27761  19FEB65  23JUN91
-1332   M    NA1         42178  17SEP70  04JUN91
-1890   M    PT2         91908  20JUL51  25NOV79
-1429   F    TA1         27939  28FEB60  07AUG92
-1107   M    PT2         89977  09JUN54  10FEB79
-1908   F    TA2         32995  10DEC69  23APR90
-1830   F    PT2         84471  27MAY57  29JAN83
-1882   M    ME3         41538  10JUL57  21NOV78
-1050   M    ME2         35167  14JUL63  24AUG86
-1425   F    FA1         23979  28DEC71  28FEB93
-1928   M    PT2         89858  16SEP54  13JUL90
-1480   F    TA3         39583  03SEP57  25MAR81
-1100   M    BCK         25004  01DEC60  07MAY88
-1995   F    ME1         28810  24AUG73  19SEP93
-1135   F    FA2         27321  20SEP60  31MAR90
+1400   M    ME1         29769  05NOV67  16OCT90
+1401   M    TA3         38822  13DEC50  17NOV85
+1402   M    TA2         32615  17JAN63  02DEC90
+1403   M    ME1         28072  28JAN69  21DEC91
+1404   M    PT2         91376  24FEB53  01JAN80
+1405   M    SCP         18056  05MAR66  26JAN92
+1406   M    ME2         35185  08MAR61  17FEB87
+1407   M    PT1         68096  23MAR69  18MAR90
+1408   M    TA2         34138  29MAR60  14OCT87
+1409   M    ME3         41551  19APR50  22OCT81
+1410   M    PT2         84685  03MAY67  07NOV86
+1411   M    FA2         27265  27MAY61  01DEC89
+1412   M    ME1         27799  18JUN56  05DEC91
+1413   M    FA2         27435  16SEP65  02JAN90
+1414   M    FA1         23644  24MAR72  12APR92
 1415   M    FA2         28278  09MAR58  12FEB88
-1076   M    PT1         66558  14OCT55  03OCT91
-1426   F    TA2         32991  05DEC66  25JUN90
-1564   F    SCP         18833  12APR62  01JUL92
-1221   F    FA2         27896  22SEP67  04OCT91
-1133   M    TA1         27701  13JUL66  12FEB92
-1435   F    TA3         38808  12MAY59  08FEB80
+1417   M    NA2         52270  27JUN64  07MAR89
 1418   M    ME1         28005  29MAR57  06JAN92
-1017   M    TA3         40858  28DEC57  16OCT81
-1443   F    NA1         42274  17NOV68  29AUG91
-1131   F    TA2         32575  26DEC71  19APR91
+1420   M    ME3         43071  19FEB65  22JUL87
+1421   M    TA2         33155  08JAN59  28FEB90
+1422   F    FA1         22454  04JUN64  06APR91
+1423   F    ME2         35773  14MAY68  19AUG90
+1424   F    FA2         28978  04AUG69  11DEC89
+1425   F    FA1         23979  28DEC71  28FEB93
+1426   F    TA2         32991  05DEC66  25JUN90
 1427   F    TA2         34046  31OCT70  30JAN90
-1036   F    TA3         39392  19MAY65  23OCT84
-1130   F    FA1         23916  16MAY71  05JUN92
-1127   F    TA2         33011  09NOV64  07DEC86
-1433   F    FA3         32982  08JUL66  17JAN87
+1428   F    PT1         68767  04APR60  16NOV91
+1429   F    TA1         27939  28FEB60  07AUG92
+1430   F    TA2         32925  28FEB62  27APR87
 1431   F    FA3         33230  09JUN64  05APR88
-1122   F    FA2         27956  01MAY63  27NOV88
-1105   M    ME2         34805  01MAR62  13AUG90
+1432   F    ME2         35327  03NOV61  10FEB85
+1433   F    FA3         32982  08JUL66  17JAN87
+1434   F    FA2         28622  11JUL62  28OCT90
+1435   F    TA3         38808  12MAY59  08FEB80
+1436   F    TA2         34475  11JUN64  12MAR87
+1437   F    FA3         33104  20SEP60  31AUG84
+1438   F    TA3         39223  15MAR65  18NOV87
+1439   F    PT1         70736  06MAR64  10SEP90
+1440   F    ME2         35757  27SEP62  09APR91
+1441   F    FA2         27158  19NOV69  23MAR91
+1442   F    PT2         84536  05SEP66  12APR88
+1443   F    NA1         42274  17NOV68  29AUG91
+1475   F    FA2         27787  15DEC61  13JUL90
+1476   F    TA2         34803  30MAY66  17MAR87
+1477   M    FA2         28566  21MAR64  07MAR88
+1478   M    PT2         84203  09AUG59  24OCT90
+1479   F    TA3         38785  22DEC68  05OCT89
+1480   F    TA3         39583  03SEP57  25MAR81
+1499   M    ME3         43025  26APR54  07JUN80
+1521   M    ME3         41526  12APR63  13JUL88
+1545   M    PT1         66130  12AUG59  29MAY90
+1555   F    FA2         27499  16MAR68  04JUL92
+1556   M    PT1         71349  22JUN64  11DEC91
+1561   M    TA2         34514  30NOV63  07OCT87
+1564   F    SCP         18833  12APR62  01JUL92
+1574   M    FA2         28572  27APR60  20DEC92
+1616   F    TA2         34137  01MAR70  04JUN93
+1639   F    TA3         40260  26JUN57  28JAN84
+1653   F    ME2         35108  15OCT64  09AUG90
+1658   M    SCP         17943  08APR67  29FEB92
+1663   M    BCK         26452  11JAN67  11AUG91
+1673   M    BCK         25477  27FEB70  15JUL91
+1677   M    BCK         26007  05NOV63  27MAR89
+1704   M    BCK         25465  30AUG66  28JUN87
+1739   M    PT1         66517  25DEC64  27JAN91
+1777   M    PT3        109630  23SEP51  21JUN81
+1782   M    ME2         35345  04DEC70  22FEB92
+1789   M    SCP         18326  25JAN57  11APR78
+1830   F    PT2         84471  27MAY57  29JAN83
+1834   M    BCK         26896  08FEB72  02JUL92
+1839   F    NA1         43433  29NOV70  03JUL93
+1845   M    BCK         25996  20NOV59  22MAR80
+1876   M    TA3         39675  20MAY58  27APR85
+1882   M    ME3         41538  10JUL57  21NOV78
+1890   M    PT2         91908  20JUL51  25NOV79
+1900   M    ME2         35105  25MAY62  27OCT87
+1905   M    PT1         65111  16APR72  29MAY92
+1907   M    TA2         33329  15NOV60  06JUL87
+1908   F    TA2         32995  10DEC69  23APR90
+1919   M    TA2         34376  12SEP60  04JUN87
+1928   M    PT2         89858  16SEP54  13JUL90
+1935   F    NA2         51081  28MAR54  16OCT81
+1970   F    FA1         22615  25SEP64  12MAR91
+1983   F    FA3         33419  28FEB62  27APR87
+1988   M    FA3         32217  30NOV59  18SEP84
+1991   F    TA1         27645  07MAY72  12DEC92
+1995   F    ME1         28810  24AUG73  19SEP93
 ;
 
 proc sql outobs=15;
@@ -529,18 +533,18 @@ data samples.samdat6;
    informat BIRTH date7. HIRED date7.;
    format BIRTH date9. HIRED date9.;
    datalines;
-1639   F    TA3         42260  26JUN57  28JAN84
-1065   M    ME3         38090  26JAN44  07JAN87
-1561   M    TA3         36514  30NOV63  07OCT87
-1221   F    FA3         29896  22SEP67  04OCT91
-1447   F    FA1         22123  07AUG72  29OCT92
-1998   M    SCP         23100  10SEP70  02NOV92
 1036   F    TA3         42465  19MAY65  23OCT84
+1065   M    ME3         38090  26JAN44  07JAN87
+1076   M    PT1         69742  14OCT55  03OCT91
 1106   M    PT3         94039  06NOV57  16AUG84
 1129   F    ME3         36758  08DEC61  17AUG91
+1221   F    FA3         29896  22SEP67  04OCT91
 1350   F    FA3         36098  31AUG65  29JUL90
 1369   M    TA3         36598  28DEC61  13MAR87
-1076   M    PT1         69742  14OCT55  03OCT91
+1447   F    FA1         22123  07AUG72  29OCT92
+1561   M    TA3         36514  30NOV63  07OCT87
+1639   F    TA3         42260  26JUN57  28JAN84
+1998   M    SCP         23100  10SEP70  02NOV92
 ;
 
 proc sql;
@@ -555,154 +559,154 @@ data samples.samdat7;
    input IDNUM $4. +3 LNAME $15. +2 FNAME $15. +2 CITY $15. +2
          STATE $2. +5 HPHONE $12.;
    datalines;
-1919   ADAMS            GERALD           STAMFORD         CT     203/781-1255
-1653   ALIBRANDI        MARIA            BRIDGEPORT       CT     203/675-7715
-1400   ALHERTANI        ABDULLAH         NEW YORK         NY     212/586-0808
-1350   ALVAREZ          MERCEDES         NEW YORK         NY     718/383-1549
-1401   ALVAREZ          CARLOS           PATERSON         NJ     201/732-8787
-1499   BAREFOOT         JOSEPH           PRINCETON        NJ     201/812-5665
-1101   BAUCOM           WALTER           NEW YORK         NY     212/586-8060
-1333   BANADYGA         JUSTIN           STAMFORD         CT     203/781-1777
-1402   BLALOCK          RALPH            NEW YORK         NY     718/384-2849
-1479   BALLETTI         MARIE            NEW YORK         NY     718/384-8816
-1403   BOWDEN           EARL             BRIDGEPORT       CT     203/675-3434
-1739   BRANCACCIO       JOSEPH           NEW YORK         NY     212/587-1247
-1658   BREUHAUS         JEREMY           NEW YORK         NY     212/587-3622
-1428   BRADY            CHRISTINE        STAMFORD         CT     203/781-1212
-1782   BREWCZAK         JAKOB            STAMFORD         CT     203/781-0019
-1244   BUCCI            ANTHONY          NEW YORK         NY     718/383-3334
-1383   BURNETTE         THOMAS           NEW YORK         NY     718/384-3569
-1574   CAHILL           MARSHALL         NEW YORK         NY     718/383-2338
-1789   CARAWAY          DAVIS            NEW YORK         NY     212/587-9000
-1404   COHEN            LEE              NEW YORK         NY     718/384-2946
-1437   CARTER           DOROTHY          BRIDGEPORT       CT     203/675-4117
-1639   CARTER-COHEN     KAREN            STAMFORD         CT     203/781-8839
-1269   CASTON           FRANKLIN         STAMFORD         CT     203/781-3335
-1065   COPAS            FREDERICO        NEW YORK         NY     718/384-5618
-1876   CHIN             JACK             NEW YORK         NY     212/588-5634
+1009   MORGAN           GEORGE           NEW YORK         NY     212/586-7753
+1017   WELCH            DARIUS           NEW YORK         NY     212/586-5535
+1036   WONG             LESLIE           NEW YORK         NY     212/587-2570
 1037   CHOW             JANE             STAMFORD         CT     203/781-8868
-1129   COUNIHAN         BRENDA           NEW YORK         NY     718/383-2313
-1988   COOPER           ANTHONY          NEW YORK         NY     212/587-1228
-1405   DACKO            JASON            PATERSON         NJ     201/732-2323
-1430   DABROWSKI        SANDRA           BRIDGEPORT       CT     203/675-1647
-1983   DEAN             SHARON           NEW YORK         NY     718/384-1647
-1134   DELGADO          MARIA            STAMFORD         CT     203/781-1528
-1118   DENNIS           ROGER            NEW YORK         NY     718/383-1122
-1438   DABBOUSSI        KAMILLA          STAMFORD         CT     203/781-2229
-1125   DUNLAP           DONNA            NEW YORK         NY     718/383-2094
-1475   ELGES            MARGARETE        NEW YORK         NY     718/383-2828
-1117   EDGERTON         JOSHUA           NEW YORK         NY     212/588-1239
-1935   FERNANDEZ        KATRINA          BRIDGEPORT       CT     203/675-2962
-1124   FIELDS           DIANA            WHITE PLAINS     NY     914/455-2998
-1422   FUJIHARA         KYOKO            PRINCETON        NJ     201/812-0902
-1616   FUENTAS          CARLA            NEW YORK         NY     718/384-3329
-1406   FOSTER           GERALD           BRIDGEPORT       CT     203/675-6363
-1120   GARCIA           JACK             NEW YORK         NY     718/384-4930
+1038   RODRIGUEZ        MARIA            BRIDGEPORT       CT     203/675-2048
+1050   TUTTLE           THOMAS           WHITE PLAINS     NY     914/455-2119
+1065   COPAS            FREDERICO        NEW YORK         NY     718/384-5618
+1076   VENTER           RANDALL          NEW YORK         NY     718/383-2321
 1094   GOMEZ            ALAN             BRIDGEPORT       CT     203/675-7181
-1389   GOLDSTEIN        LEVI             NEW YORK         NY     718/384-9326
-1905   GRAHAM           ALVIN            NEW YORK         NY     212/586-8815
-1407   GREGORSKI        DANIEL           MT. VERNON       NY     914/468-1616
-1114   GREENWALD        JANICE           NEW YORK         NY     212/588-1092
-1410   HARRIS           CHARLES          STAMFORD         CT     203/781-0937
-1439   HASENHAUER       CHRISTINA        BRIDGEPORT       CT     203/675-4987
-1409   HAVELKA          RAYMOND          STAMFORD         CT     203/781-9697
-1408   HENDERSON        WILLIAM          PRINCETON        NJ     201/812-4789
-1121   HERNANDEZ        ROBERTO          NEW YORK         NY     718/384-3313
-1991   HOWARD           GRETCHEN         BRIDGEPORT       CT     203/675-0007
+1100   VANDEUSEN        RICHARD          NEW YORK         NY     212/586-2531
+1101   BAUCOM           WALTER           NEW YORK         NY     212/586-8060
 1102   HERMANN          JOACHIM          WHITE PLAINS     NY     914/455-0976
-1356   HOWARD           MICHAEL          NEW YORK         NY     212/586-8411
-1545   HERRERO          CLYDE            STAMFORD         CT     203/781-1119
+1103   MCDANIEL         RONDA            NEW YORK         NY     212/586-0013
+1104   MORGAN           CHRISTOPHER      NEW YORK         NY     718/383-9740
+1105   YOUNG            LAWRENCE         NEW YORK         NY     718/384-0008
+1106   MARSHBURN        JASPER           STAMFORD         CT     203/781-1457
+1107   THOMPSON         WAYNE            NEW YORK         NY     718/384-3785
+1111   RHODES           JEREMY           PRINCETON        NJ     201/812-1837
+1112   SAYERS           RANDY            NEW YORK         NY     718/384-4895
+1113   JONES            LESLIE           NEW YORK         NY     718/383-3003
+1114   GREENWALD        JANICE           NEW YORK         NY     212/588-1092
+1115   MURPHY           ALICE            NEW YORK         NY     718/384-1982
+1116   RICHARDS         CASEY            NEW YORK         NY     212/587-1224
+1117   EDGERTON         JOSHUA           NEW YORK         NY     212/588-1239
+1118   DENNIS           ROGER            NEW YORK         NY     718/383-1122
+1119   LI               JEFF             NEW YORK         NY     212/586-2344
+1120   GARCIA           JACK             NEW YORK         NY     718/384-4930
+1121   HERNANDEZ        ROBERTO          NEW YORK         NY     718/384-3313
+1122   YOUNG            JOANN            NEW YORK         NY     718/384-2021
+1123   PETERSON         SUZANNE          NEW YORK         NY     718/383-0077
+1124   FIELDS           DIANA            WHITE PLAINS     NY     914/455-2998
+1125   DUNLAP           DONNA            NEW YORK         NY     718/383-2094
+1126   KIMANI           ANNE             NEW YORK         NY     212/586-1229
+1127   WOOD             SANDRA           NEW YORK         NY     212/587-2881
+1128   NELSON           FELICIA          BRIDGEPORT       CT     203/675-1166
+1129   COUNIHAN         BRENDA           NEW YORK         NY     718/383-2313
+1130   WOOD             DEBORAH          NEW YORK         NY     212/587-0013
+1131   WELLS            NADINE           NEW YORK         NY     718/383-1045
+1132   PEARCE           CAROL            NEW YORK         NY     718/384-1986
+1133   WANG             CHIN             NEW YORK         NY     212/587-1956
+1134   DELGADO          MARIA            STAMFORD         CT     203/781-1528
+1135   VEGA             ANNA             NEW YORK         NY     718/384-5913
+1200   OVERMAN          MICHELLE         STAMFORD         CT     203/781-1835
+1221   WALTERS          DIANE            NEW YORK         NY     718/384-1918
+1244   BUCCI            ANTHONY          NEW YORK         NY     718/383-3334
+1269   CASTON           FRANKLIN         STAMFORD         CT     203/781-3335
 1292   HUNTER           HELEN            BRIDGEPORT       CT     203/675-4830
-1440   JACKSON          LAURA            STAMFORD         CT     203/781-0088
+1332   STEPHENSON       ADAM             BRIDGEPORT       CT     203/675-1497
+1333   BANADYGA         JUSTIN           STAMFORD         CT     203/781-1777
+1347   O'NEAL           BRYAN            NEW YORK         NY     718/384-0230
+1350   ALVAREZ          MERCEDES         NEW YORK         NY     718/383-1549
+1352   RIVERS           SIMON            NEW YORK         NY     718/383-3345
+1354   PARKER           MARY             WHITE PLAINS     NY     914/455-2337
+1356   HOWARD           MICHAEL          NEW YORK         NY     212/586-8411
 1368   JEPSEN           RONALD           STAMFORD         CT     203/781-8413
 1369   JONSON           ANTHONY          NEW YORK         NY     212/587-5385
-1411   JOHNSON          JACKSON          PATERSON         NJ     201/732-3678
-1113   JONES            LESLIE           NEW YORK         NY     718/383-3003
-1704   JONES            NATHAN           NEW YORK         NY     718/384-0049
-1900   KING             WILLIAM          NEW YORK         NY     718/383-3698
-1126   KIMANI           ANNE             NEW YORK         NY     212/586-1229
-1677   KRAMER           JACKSON          BRIDGEPORT       CT     203/675-7432
-1441   LAWRENCE         KATHY            PRINCETON        NJ     201/812-3337
-1421   LEE              RUSSELL          MT. VERNON       NY     914/468-9143
-1119   LI               JEFF             NEW YORK         NY     212/586-2344
-1834   LEBLANC          RUSSELL          NEW YORK         NY     718/384-0040
-1777   LUFKIN           ROY              NEW YORK         NY     718/383-4413
-1663   MARKS            JOHN             NEW YORK         NY     212/587-7742
-1106   MARSHBURN        JASPER           STAMFORD         CT     203/781-1457
-1103   MCDANIEL         RONDA            NEW YORK         NY     212/586-0013
-1477   MEYERS           PRESTON          BRIDGEPORT       CT     203/675-8125
-1476   MONROE           JOYCE            STAMFORD         CT     203/781-2837
 1379   MORGAN           ALFRED           STAMFORD         CT     203/781-2216
-1104   MORGAN           CHRISTOPHER      NEW YORK         NY     718/383-9740
-1009   MORGAN           GEORGE           NEW YORK         NY     212/586-7753
-1412   MURPHEY          JOHN             PRINCETON        NJ     201/812-4414
-1115   MURPHY           ALICE            NEW YORK         NY     718/384-1982
-1128   NELSON           FELICIA          BRIDGEPORT       CT     203/675-1166
-1442   NEWKIRK          SANDRA           PRINCETON        NJ     201/812-3331
-1417   NEWKIRK          WILLIAM          PATERSON         NJ     201/732-6611
-1478   NEWTON           JAMES            NEW YORK         NY     212/587-5549
-1673   NICHOLLS         HENRY            STAMFORD         CT     203/781-7770
-1839   NORRIS           DIANE            NEW YORK         NY     718/384-1767
-1347   O'NEAL           BRYAN            NEW YORK         NY     718/384-0230
-1423   OSWALD           LESLIE           MT. VERNON       NY     914/468-9171
-1200   OVERMAN          MICHELLE         STAMFORD         CT     203/781-1835
-1970   PARKER           ANNE             NEW YORK         NY     718/383-3895
-1521   PARKER           JAY              NEW YORK         NY     212/587-7603
-1354   PARKER           MARY             WHITE PLAINS     NY     914/455-2337
-1424   PATTERSON        RENEE            NEW YORK         NY     212/587-8991
-1132   PEARCE           CAROL            NEW YORK         NY     718/384-1986
-1845   PEARSON          JAMES            NEW YORK         NY     718/384-2311
-1556   PENNINGTON       MICHAEL          NEW YORK         NY     718/383-5681
-1413   PETERS           RANDALL          PRINCETON        NJ     201/812-2478
-1123   PETERSON         SUZANNE          NEW YORK         NY     718/383-0077
-1907   PHELPS           WILLIAM          STAMFORD         CT     203/781-1118
-1436   PORTER           SUSAN            NEW YORK         NY     718/383-5777
+1383   BURNETTE         THOMAS           NEW YORK         NY     718/384-3569
 1385   RAYNOR           MILTON           BRIDGEPORT       CT     203/675-2846
-1432   REED             MARILYN          MT. VERNON       NY     914/468-5454
-1111   RHODES           JEREMY           PRINCETON        NJ     201/812-1837
-1116   RICHARDS         CASEY            NEW YORK         NY     212/587-1224
-1352   RIVERS           SIMON            NEW YORK         NY     718/383-3345
-1555   RODRIGUEZ        JULIA            BRIDGEPORT       CT     203/675-2401
-1038   RODRIGUEZ        MARIA            BRIDGEPORT       CT     203/675-2048
-1420   ROUSE            JEREMY           PATERSON         NJ     201/732-9834
-1561   SANDERS          RAYMOND          NEW YORK         NY     212/588-6615
-1434   SANDERSON        EDITH            STAMFORD         CT     203/781-1333
-1414   SANDERSON        NATHAN           BRIDGEPORT       CT     203/675-1715
-1112   SAYERS           RANDY            NEW YORK         NY     718/384-4895
+1389   GOLDSTEIN        LEVI             NEW YORK         NY     718/384-9326
 1390   SMART            JONATHAN         NEW YORK         NY     718/383-1141
-1332   STEPHENSON       ADAM             BRIDGEPORT       CT     203/675-1497
-1890   STEPHENSON       ROBERT           NEW YORK         NY     718/384-9874
-1429   THOMPSON         ALICE            STAMFORD         CT     203/781-3857
-1107   THOMPSON         WAYNE            NEW YORK         NY     718/384-3785
-1908   TRENTON          MELISSA          NEW YORK         NY     212/586-6262
-1830   TRIPP            KATHY            BRIDGEPORT       CT     203/675-2479
-1882   TUCKER           ALAN             NEW YORK         NY     718/384-0216
-1050   TUTTLE           THOMAS           WHITE PLAINS     NY     914/455-2119
-1425   UNDERWOOD        JENNY            STAMFORD         CT     203/781-0978
-1928   UPCHURCH         LARRY            WHITE PLAINS     NY     914/455-5009
-1480   UPDIKE           THERESA          NEW YORK         NY     212/587-8729
-1100   VANDEUSEN        RICHARD          NEW YORK         NY     212/586-2531
-1995   VARNER           ELIZABETH        NEW YORK         NY     718/384-7113
-1135   VEGA             ANNA             NEW YORK         NY     718/384-5913
+1400   ALHERTANI        ABDULLAH         NEW YORK         NY     212/586-0808
+1401   ALVAREZ          CARLOS           PATERSON         NJ     201/732-8787
+1402   BLALOCK          RALPH            NEW YORK         NY     718/384-2849
+1403   BOWDEN           EARL             BRIDGEPORT       CT     203/675-3434
+1404   COHEN            LEE              NEW YORK         NY     718/384-2946
+1405   DACKO            JASON            PATERSON         NJ     201/732-2323
+1406   FOSTER           GERALD           BRIDGEPORT       CT     203/675-6363
+1407   GREGORSKI        DANIEL           MT. VERNON       NY     914/468-1616
+1408   HENDERSON        WILLIAM          PRINCETON        NJ     201/812-4789
+1409   HAVELKA          RAYMOND          STAMFORD         CT     203/781-9697
+1410   HARRIS           CHARLES          STAMFORD         CT     203/781-0937
+1411   JOHNSON          JACKSON          PATERSON         NJ     201/732-3678
+1412   MURPHEY          JOHN             PRINCETON        NJ     201/812-4414
+1413   PETERS           RANDALL          PRINCETON        NJ     201/812-2478
+1414   SANDERSON        NATHAN           BRIDGEPORT       CT     203/675-1715
 1415   VEGA             FRANKLIN         NEW YORK         NY     718/384-2823
-1076   VENTER           RANDALL          NEW YORK         NY     718/383-2321
-1426   VICK             THERESA          PRINCETON        NJ     201/812-2424
-1564   WALTERS          ANNE             NEW YORK         NY     212/587-3257
-1221   WALTERS          DIANE            NEW YORK         NY     718/384-1918
-1133   WANG             CHIN             NEW YORK         NY     212/587-1956
-1435   WARD             ELAINE           NEW YORK         NY     718/383-4987
+1417   NEWKIRK          WILLIAM          PATERSON         NJ     201/732-6611
 1418   WATSON           BERNARD          NEW YORK         NY     718/383-1298
-1017   WELCH            DARIUS           NEW YORK         NY     212/586-5535
-1443   WELLS            AGNES            STAMFORD         CT     203/781-5546
-1131   WELLS            NADINE           NEW YORK         NY     718/383-1045
+1420   ROUSE            JEREMY           PATERSON         NJ     201/732-9834
+1421   LEE              RUSSELL          MT. VERNON       NY     914/468-9143
+1422   FUJIHARA         KYOKO            PRINCETON        NJ     201/812-0902
+1423   OSWALD           LESLIE           MT. VERNON       NY     914/468-9171
+1424   PATTERSON        RENEE            NEW YORK         NY     212/587-8991
+1425   UNDERWOOD        JENNY            STAMFORD         CT     203/781-0978
+1426   VICK             THERESA          PRINCETON        NJ     201/812-2424
 1427   WHALEY           CAROLYN          MT. VERNON       NY     914/468-4528
-1036   WONG             LESLIE           NEW YORK         NY     212/587-2570
-1130   WOOD             DEBORAH          NEW YORK         NY     212/587-0013
-1127   WOOD             SANDRA           NEW YORK         NY     212/587-2881
-1433   YANCEY           ROBIN            PRINCETON        NJ     201/812-1874
+1428   BRADY            CHRISTINE        STAMFORD         CT     203/781-1212
+1429   THOMPSON         ALICE            STAMFORD         CT     203/781-3857
+1430   DABROWSKI        SANDRA           BRIDGEPORT       CT     203/675-1647
 1431   YOUNG            DEBORAH          STAMFORD         CT     203/781-2987
-1122   YOUNG            JOANN            NEW YORK         NY     718/384-2021
-1105   YOUNG            LAWRENCE         NEW YORK         NY     718/384-0008
+1432   REED             MARILYN          MT. VERNON       NY     914/468-5454
+1433   YANCEY           ROBIN            PRINCETON        NJ     201/812-1874
+1434   SANDERSON        EDITH            STAMFORD         CT     203/781-1333
+1435   WARD             ELAINE           NEW YORK         NY     718/383-4987
+1436   PORTER           SUSAN            NEW YORK         NY     718/383-5777
+1437   CARTER           DOROTHY          BRIDGEPORT       CT     203/675-4117
+1438   DABBOUSSI        KAMILLA          STAMFORD         CT     203/781-2229
+1439   HASENHAUER       CHRISTINA        BRIDGEPORT       CT     203/675-4987
+1440   JACKSON          LAURA            STAMFORD         CT     203/781-0088
+1441   LAWRENCE         KATHY            PRINCETON        NJ     201/812-3337
+1442   NEWKIRK          SANDRA           PRINCETON        NJ     201/812-3331
+1443   WELLS            AGNES            STAMFORD         CT     203/781-5546
+1475   ELGES            MARGARETE        NEW YORK         NY     718/383-2828
+1476   MONROE           JOYCE            STAMFORD         CT     203/781-2837
+1477   MEYERS           PRESTON          BRIDGEPORT       CT     203/675-8125
+1478   NEWTON           JAMES            NEW YORK         NY     212/587-5549
+1479   BALLETTI         MARIE            NEW YORK         NY     718/384-8816
+1480   UPDIKE           THERESA          NEW YORK         NY     212/587-8729
+1499   BAREFOOT         JOSEPH           PRINCETON        NJ     201/812-5665
+1521   PARKER           JAY              NEW YORK         NY     212/587-7603
+1545   HERRERO          CLYDE            STAMFORD         CT     203/781-1119
+1555   RODRIGUEZ        JULIA            BRIDGEPORT       CT     203/675-2401
+1556   PENNINGTON       MICHAEL          NEW YORK         NY     718/383-5681
+1561   SANDERS          RAYMOND          NEW YORK         NY     212/588-6615
+1564   WALTERS          ANNE             NEW YORK         NY     212/587-3257
+1574   CAHILL           MARSHALL         NEW YORK         NY     718/383-2338
+1616   FUENTAS          CARLA            NEW YORK         NY     718/384-3329
+1639   CARTER-COHEN     KAREN            STAMFORD         CT     203/781-8839
+1653   ALIBRANDI        MARIA            BRIDGEPORT       CT     203/675-7715
+1658   BREUHAUS         JEREMY           NEW YORK         NY     212/587-3622
+1663   MARKS            JOHN             NEW YORK         NY     212/587-7742
+1673   NICHOLLS         HENRY            STAMFORD         CT     203/781-7770
+1677   KRAMER           JACKSON          BRIDGEPORT       CT     203/675-7432
+1704   JONES            NATHAN           NEW YORK         NY     718/384-0049
+1739   BRANCACCIO       JOSEPH           NEW YORK         NY     212/587-1247
+1777   LUFKIN           ROY              NEW YORK         NY     718/383-4413
+1782   BREWCZAK         JAKOB            STAMFORD         CT     203/781-0019
+1789   CARAWAY          DAVIS            NEW YORK         NY     212/587-9000
+1830   TRIPP            KATHY            BRIDGEPORT       CT     203/675-2479
+1834   LEBLANC          RUSSELL          NEW YORK         NY     718/384-0040
+1839   NORRIS           DIANE            NEW YORK         NY     718/384-1767
+1845   PEARSON          JAMES            NEW YORK         NY     718/384-2311
+1876   CHIN             JACK             NEW YORK         NY     212/588-5634
+1882   TUCKER           ALAN             NEW YORK         NY     718/384-0216
+1890   STEPHENSON       ROBERT           NEW YORK         NY     718/384-9874
+1900   KING             WILLIAM          NEW YORK         NY     718/383-3698
+1905   GRAHAM           ALVIN            NEW YORK         NY     212/586-8815
+1907   PHELPS           WILLIAM          STAMFORD         CT     203/781-1118
+1908   TRENTON          MELISSA          NEW YORK         NY     212/586-6262
+1919   ADAMS            GERALD           STAMFORD         CT     203/781-1255
+1928   UPCHURCH         LARRY            WHITE PLAINS     NY     914/455-5009
+1935   FERNANDEZ        KATRINA          BRIDGEPORT       CT     203/675-2962
+1970   PARKER           ANNE             NEW YORK         NY     718/383-3895
+1983   DEAN             SHARON           NEW YORK         NY     718/384-1647
+1988   COOPER           ANTHONY          NEW YORK         NY     212/587-1228
+1991   HOWARD           GRETCHEN         BRIDGEPORT       CT     203/675-0007
+1995   VARNER           ELIZABETH        NEW YORK         NY     718/384-7113
 ;
 
 proc sql outobs=15;
@@ -717,25 +721,25 @@ data samples.samdat8;
    input SUPID $4. +8 STATE $2. +5  JOBCAT  $2.;
    label SUPID='Supervisor Id' JOBCAT='Job Category';
    datalines;
-1677        CT     BC
-1834        NY     BC
+1106        CT     PT
+1118        NY     PT
+1126        NY     TA
+1352        NY     NA
+1385        CT     ME
+1401        NJ     TA
+1405        NJ     SC
+1417        NJ     NA
+1420        NJ     ME
 1431        CT     FA
 1433        NJ     FA
-1983        NY     FA
-1385        CT     ME
-1420        NJ     ME
-1882        NY     ME
-1935        CT     NA
-1417        NJ     NA
-1352        NY     NA
-1106        CT     PT
 1442        NJ     PT
-1118        NY     PT
-1405        NJ     SC
 1564        NY     SC
 1639        CT     TA
-1401        NJ     TA
-1126        NY     TA
+1677        CT     BC
+1834        NY     BC
+1882        NY     ME
+1935        CT     NA
+1983        NY     FA
 ;
 
 proc sql  outobs=15;
@@ -1080,128 +1084,6 @@ DATA samples.SAMDAT12;
 proc sql  outobs=15;
    title "SAMDAT12 Data (Partial)";
    select * from samples.samdat12;
-
-  /*----------------------------------------------------------*/
-  /*   The following code uses the data sets created above to */
-  /*   create DBMS tables.                                    */
-  /*----------------------------------------------------------*/
-
-proc sql;
-
-drop table MYDBLIB.SAMDAT1;
-drop table MYDBLIB.SAMDAT2;
-drop table MYDBLIB.SAMDAT3;
-drop table MYDBLIB.SAMDAT4;
-drop table MYDBLIB.SAMDAT5;
-drop table MYDBLIB.SAMDAT6;
-drop table MYDBLIB.SAMDAT7;
-drop table MYDBLIB.SAMDAT8;
-drop table MYDBLIB.SAMDAT9;
-drop table MYDBLIB.SAMDAT10;
-drop table MYDBLIB.SAMDAT11;
-drop table MYDBLIB.SAMDAT12;
-drop table MYDBLIB.SAMTEMP;
-
-quit;
-
-proc sql;
-
-create table MYDBLIB.SAMDAT1 as
-select * from samples.samdat1;
-
-create table MYDBLIB.SAMDAT2 as
-select * from samples.samdat2;
-
-create table MYDBLIB.SAMDAT3 as
-select * from samples.samdat3;
-
-%if (&enginename EQ ASTER) %then %do; 
-	create table MYDBLIB.SAMDAT4 (dbtype=idnum="int")
-	as select * from samples.samdat4;
-%end;
-%else %do;
-	create table MYDBLIB.SAMDAT4 as
-	select * from samples.samdat4;
-%end;
-
-%if (&enginename EQ ASTER) %then %do;
-	create table MYDBLIB.SAMDAT5 (dbtype=idnum="int")
-	as select * from samples.samdat5;
-%end;
-%else %do;
-	create table MYDBLIB.SAMDAT5 as
-	select * from samples.samdat5;
-%end
-
-%if (&enginename EQ ASTER) %then %do; 
-    create table MYDBLIB.SAMDAT6 (dbtype=idnum="int")
-    as select * from samples.samdat6;
-%end;
-%else %do;
-	create table MYDBLIB.SAMDAT6 as
-	select * from samples.samdat6;
-%end
-
-%macro fillData7;
-  %if (&enginename EQ MYSQL) %then %do;
-	create table MYDBLIB.SAMDAT7 (dbtype=idnum="varchar(4) primary key")
-	as select * from samples.samdat7;
-  %end;
-  %else %if (&enginename EQ ASTER) %then %do;
-    create table MYDBLIB.SAMDAT7 (dbtype=idnum="int primary key")
-	as select * from samples.samdat7;
-  %end;
-  %else %if (&enginename EQ VERTICA) %then %do;
-    create table MYDBLIB.SAMDAT7(dbtype=(IDNUM="char(4),primary key(IDNUM)"))
-	as select * from samples.samdat7;
-  %end;
-  %else %do;
-    create table MYDBLIB.SAMDAT7 as
-	select * from samples.samdat7;
-  %end;
-%mend;
-%fillData7;
-
-%if (&enginename EQ ASTER) %then %do; 
-	create table MYDBLIB.SAMDAT8 (dbtype=supid="int")
-	as select * from samples.samdat8;
-%end;
-%else %do;
-    create table MYDBLIB.SAMDAT8 as
-	select * from samples.samdat8;
-%end;
-
-%if (&enginename EQ HADOOP or &enginename EQ IMPALA) %then %do; 
-	create table MYDBLIB.SAMDAT9 as
-	select * from samples.samdat9;
-%end;
-%else %do;
-    create table MYDBLIB.SAMDAT9(dbnull=(paidon=yes)) as
-	select * from samples.samdat9;
-%end;
-
-%if (&enginename EQ HADOOP or &enginename EQ IMPALA) %then %do; 
-	create table MYDBLIB.SAMDAT10 as
-	select * from samples.samdat10;
-%end;
-%else %do;
-    create table MYDBLIB.SAMDAT10(dbnull=(salary=yes gender=yes birthdte=yes)) as
-	select * from samples.samdat10;
-%end;
-
-create table MYDBLIB.SAMDAT11 as
-select * from samples.samdat11;
-
-%if (&enginename EQ HADOOP or &enginename EQ IMPALA) %then %do; 
-	create table MYDBLIB.SAMDAT12 as
-	select * from samples.samdat12;
-%end;
-%else %do;
-    create table MYDBLIB.SAMDAT12(dbnull=(fabcharg=yes shipped=yes procsby=yes
-	specflag=yes)) as select * from samples.samdat12;
-%end;
-
-quit;
 
   /*--------------------------------------------------------*/
   /*   CREATE THE DATA SET SAMDAT13                         */

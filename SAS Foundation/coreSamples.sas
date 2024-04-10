@@ -1,4 +1,4 @@
- /*********************************************************************/
+  /*********************************************************************/
  /*          S A S   S A M P L E   L I B R A R Y                      */
  /*                                                                   */
  /*    NAME: coreSamples.sas                                          */
@@ -16,12 +16,13 @@
  /*          with the requirements of your database.                  */
  /*                                                                   */
  /*********************************************************************/
+LIBNAME samples '/home/u63846711/samples';
 
  /*=========================*/
  /* LIBNAME Sample 1       */
  /*=========================*/
 
-proc print data=mydblib.SAMDAT7
+proc print data=samples.SAMDAT7
    (keep=lname fname state hphone);
    where state = 'NJ';
    title 'Libname Sample 1: New Jersey Phone List';
@@ -32,7 +33,7 @@ run;
  /*=========================*/
 
 data work.highwage;
-  set mydblib.SAMDAT5(drop=sex birth hired);
+  set samples.SAMDAT5(drop=sex birth hired);
   if salary>60000 then
     CATEGORY='High';
   else if salary<30000 then
@@ -50,9 +51,9 @@ run;
  /*=========================*/
  /* LIBNAME Sample 3       */
  /*=========================*/
-libname mydblib &dbms &CONNOPT connection=unique;
+
 data work.combined;
-  merge mydblib.SAMDAT7 mydblib.SAMDAT8(in=super
+  merge samples.SAMDAT7 samples.SAMDAT8(in=super
     rename=(SUPID=IDNUM));
   by IDNUM;
   if super;
@@ -67,11 +68,10 @@ run;
  /*=========================*/
 
 data work.payroll;
-  update mydblib.SAMDAT5
-         mydblib.SAMDAT6;
+  update samples.SAMDAT5
+         samples.SAMDAT6;
   by IDNUM;
 run;
-libname mydblib &dbms &CONNOPT connection=sharedread;
 
 proc print data=work.payroll;
   title 'Libname Sample 4: Updated Payroll Data';
@@ -87,7 +87,7 @@ proc sql;
          sum(SALARY) as total
          label='Total for Group'
          format=dollar11.2
-  from mydblib.SAMDAT5
+  from samples.SAMDAT5
   group by JOBCODE;
 quit;
 
@@ -98,7 +98,7 @@ quit;
 title 'Libname Sample 6: Flights to London and Frankfurt';
 
 proc sql;
-  select DATES, DEST from mydblib.SAMDAT2
+  select DATES, DEST from samples.SAMDAT2
   where (DEST eq "FRA") or
     (DEST eq "LON")
   order by DEST;
@@ -115,7 +115,7 @@ proc sql;
           DATES    label="Departure Date",
           DEST     label="Destination",
           BOARDED  label="Number Boarded"
-     from mydblib.SAMDAT3
+     from samples.SAMDAT3
     where BOARDED > 200
     order by FLIGHT;
 quit;
@@ -129,7 +129,7 @@ title 'Libname Sample 8: Employees with salary greater than $40,000';
 proc sql;
   select a.LNAME, a.FNAME, b.SALARY
     format=dollar10.2
-  from mydblib.SAMDAT7 a, mydblib.SAMDAT5 b
+  from samples.SAMDAT7 a, samples.SAMDAT5 b
   where (a.IDNUM eq b.IDNUM) and
     (b.SALARY gt 40000);
 quit;
@@ -139,15 +139,13 @@ quit;
  /*==========================*/
 
 /* SQL Implicit Passthru ON */
-libname mydblib &dbms &CONNOPT direct_sql=yes;
-options debug=dbms_select;
 title 'Libname Sample 9a: Delayed International Flights in March';
 
 proc sql;
   select distinct samdat1.FLIGHT,
       samdat1.DATES,
       DELAY format=2.0
-    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+    from samples.SAMDAT1, samples.SAMDAT2, samples.SAMDAT3
   where samdat1.FLIGHT=samdat2.FLIGHT and
         samdat1.DATES=samdat2.DATES and
         samdat1.FLIGHT=samdat3.FLIGHT and
@@ -159,16 +157,13 @@ quit;
  /* LIBNAME Sample 9b        */
  /*==========================*/
 
-/* SQL Implicit Passthru OFF */
-libname mydblib &dbms &CONNOPT direct_sql=no;
-
 title 'Libname Sample 9b: Delayed International Flights in March';
 
 proc sql;
   select distinct samdat1.FLIGHT,
       samdat1.DATES,
       DELAY format=2.0
-    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+    from samples.SAMDAT1, samples.SAMDAT2, samples.SAMDAT3
   where samdat1.FLIGHT=samdat2.FLIGHT and
         samdat1.DATES=samdat2.DATES and
         samdat1.FLIGHT=samdat3.FLIGHT and
@@ -180,18 +175,16 @@ quit;
  /* LIBNAME Sample 9c        */
  /*==========================*/
 
-libname mydblib &dbms &CONNOPT direct_sql=nomultoutjoins;
-
 title 'Libname Sample 9c: Delayed International Flights in March';
 
 proc sql;
   select distinct samdat1.FLIGHT,
       samdat1.DATES,
       DELAY format=2.0
-    from mydblib.SAMDAT1
-    full join mydblib.SAMDAT2 on
+    from samples.SAMDAT1
+    full join samples.SAMDAT2 on
       samdat1.FLIGHT = samdat2.FLIGHT
-    full join mydblib.SAMDAT3 on
+    full join samples.SAMDAT3 on
       samdat1.FLIGHT = samdat3.FLIGHT
   order by DELAY descending;
 quit;
@@ -200,15 +193,13 @@ quit;
  /* LIBNAME Sample 9d        */
  /*==========================*/
 
-libname mydblib &dbms &CONNOPT direct_sql=nowhere;
-
 title 'Libname Sample 9d: Delayed International Flights in March';
 
 proc sql;
   select distinct samdat1.FLIGHT,
       samdat1.DATES,
       DELAY format=2.0
-    from mydblib.SAMDAT1, mydblib.SAMDAT2, mydblib.SAMDAT3
+    from samples.SAMDAT1, samples.SAMDAT2, samples.SAMDAT3
   where samdat1.FLIGHT=samdat2.FLIGHT and
         samdat1.DATES=samdat2.DATES and
         samdat1.FLIGHT=samdat3.FLIGHT and
@@ -230,10 +221,10 @@ proc sql;
   select IDNUM, SEX, JOBCODE, SALARY,
          BIRTH,
          HIRED
-     from mydblib.SAMDAT5
+     from samples.SAMDAT5
   outer union corr
   select *
-     from mydblib.SAMDAT6
+     from samples.SAMDAT6
    order by IDNUM, JOBCODE, SALARY;
 quit;
 
@@ -241,56 +232,27 @@ quit;
  /* LIBNAME Sample 11        */
  /*==========================*/
 
-%if (&enginename EQ ASTER) %then %do;
-	proc sql undo_policy=none;
-	insert into mydblib.SAMDAT8
-		values(1588,'NY','FA');
-	quit;
 
-	proc print data=mydblib.SAMDAT8;
-		title 'Libname Sample 11: New Row in AIRLINE.SAMDAT8';
-	run;
-%end;
-%else %do;
-	proc sql undo_policy=none;
-	insert into mydblib.SAMDAT8
-		values('1588','NY','FA');
-	quit;
+proc sql undo_policy=none;
+insert into samples.SAMDAT8
+	values('1588','NY','FA');
+quit;
 
-	proc print data=mydblib.SAMDAT8;
-		title 'Libname Sample 11: New Row in AIRLINE.SAMDAT8';
-	run;
-%end;
+proc print data=samples.SAMDAT8;
+	title 'Libname Sample 11: New Row in AIRLINE.SAMDAT8';
+run;
 
- /*==========================*/
- /* LIBNAME Sample 12        */
- /*==========================*/
+proc sql undo_policy=none;
+insert into samples.SAMDAT8
+	values('1588','NY','FA');
+quit;
 
- /******************************************************************/
- /* SAS/ACCESS interface to Impala and HAWQ users:                 */
- /* Delete not supported, thus Test #12 is omitted for			   */
- /* those databases												   */
- /*																   */
- /* SAS/ACCESS interface to Hadoop users:					       */
- /* Support for delete added post 9.4M3                            */
- /* Hive .14 or higher is needed for this feature                  */
- /*                                                                */
- /******************************************************************/
+proc print data=samples.SAMDAT8;
+	title 'Libname Sample 11: New Row in AIRLINE.SAMDAT8';
+run;
 
-%if (&enginename NE HAWQ and &enginename NE IMPALA) %then %do; 
+
  
-	proc sql;
-	  delete from mydblib.SAMDAT7
-		where STATE='CT';
-	quit;
-
-
-	proc print data=mydblib.SAMDAT7;
-	title 'Libname Sample 12: AIRLINE.SAMDAT7 After Deleting Connecticut Employees';
-
-	run;
-
-%end;
 
  /*==========================*/
  /* LIBNAME Sample 13        */
@@ -302,7 +264,7 @@ proc sql;
   select LNAME as lastname,
          FNAME as firstname,
          SALARY as Salary
-  from mydblib.SAMDAT7 a, mydblib.SAMDAT5 b
+  from samples.SAMDAT7 a, samples.SAMDAT5 b
   where (a.IDNUM eq b.IDNUM) and (SALARY gt 40000);
 
 quit;
@@ -319,8 +281,7 @@ run;
 
 title 'Libname Sample 14: Number of Passengers per Flight by Date';
 
-
-proc print data=mydblib.SAMDAT1 noobs;
+proc print data=samples.SAMDAT1 noobs;
   var DATES BOARDED;
   by FLIGHT DEST;
   sumby FLIGHT;
@@ -330,7 +291,7 @@ run;
 title 'Libname Sample 14: Maximum Number of Passengers per Flight';
 
 
-proc means data=mydblib.SAMDAT1 fw=5 maxdec=1 max;
+proc means data=samples.SAMDAT1 fw=5 maxdec=1 max;
   var BOARDED;
   class FLIGHT;
 run;
@@ -342,7 +303,7 @@ title 'Libname Sample 15: Table Listing';
 
 options pageno=1;
 
-proc datasets lib=mydblib;
+proc datasets lib=samples;
   contents data=_all_ nods;
 run;
 
@@ -352,7 +313,7 @@ run;
 
 title 'Libname Sample 16: Contents of the SAMDAT2 Table';
 
-proc contents data=mydblib.SAMDAT2;
+proc contents data=samples.SAMDAT2;
 run;
 
  /*==========================*/
@@ -363,7 +324,7 @@ title 'Libname Sample 17: Ranking of Delayed Flights';
 
 options pageno=1;
 
-proc rank data=mydblib.SAMDAT2 descending
+proc rank data=samples.SAMDAT2 descending
     ties=low out=work.ranked;
   var DELAY;
   ranks RANKING;
@@ -377,10 +338,10 @@ run;
  /* LIBNAME Sample 17a        */
  /*==========================*/
  
-data mydblib.SAMTEMP;
- set mydblib.SAMDAT2;
+data samples.SAMTEMP;
+ set samples.SAMDAT2;
 run; 
-proc delete data=mydblib.SAMTEMP; run;
+proc delete data=samples.SAMTEMP; run;
 
  /*==========================*/
  /* LIBNAME Sample 18        */
@@ -388,7 +349,7 @@ proc delete data=mydblib.SAMTEMP; run;
 
 title 'Libname Sample 18: Number of Employees by Jobcode';
 
-proc tabulate data=mydblib.SAMDAT5 format=3.0;
+proc tabulate data=samples.SAMDAT5 format=3.0;
    class JOBCODE;
    table JOBCODE*n;
    keylabel n="#";
@@ -400,11 +361,11 @@ run;
 
 title 'Libname Sample 19: SAMAT5 After Appending SAMDAT6';
 
-proc append base=mydblib.SAMDAT5
-            data=mydblib.SAMDAT6;
+proc append base=samples.SAMDAT5
+            data=samples.SAMDAT6;
 run;
 
-proc print data=mydblib.SAMDAT5;
+proc print data=samples.SAMDAT5;
 run;
 
 
@@ -414,7 +375,7 @@ run;
 
 title 'Libname Sample 20: Invoice Frequency by Country';
 
-proc freq data=mydblib.SAMDAT9 (keep=INVNUM COUNTRY);
+proc freq data=samples.SAMDAT9 (keep=INVNUM COUNTRY);
   tables COUNTRY;
 run;
 
@@ -427,7 +388,7 @@ title 'Libname Sample 21: High Bills--Not Paid';
 proc sql;
   create view work.allinv as
   select PAIDON, BILLEDON, INVNUM, AMTINUS, BILLEDTO
-    from mydblib.SAMDAT9 (obs=5);
+    from samples.SAMDAT9 (obs=5);
 quit;
 
 data work.notpaid(keep=INVNUM BILLEDTO AMTINUS BILLEDON);
@@ -453,7 +414,7 @@ title 'Libname Sample 22: Interns Who Are Family Members of Employees';
 
 proc sql;
   create view emp_csr as
-  select * from mydblib.SAMDAT10
+  select * from samples.SAMDAT10
     where dept in ('CSR010', 'CSR011', 'CSR004');
 
   select samdat13.LASTNAME, samdat13.FIRSTNAM, samdat13.EMPID,
@@ -469,41 +430,12 @@ quit;
  /*==========================*/
 
 title 'Libname Sample 23: FedSql Dictionary Tables';
-
  
 proc fedsql;
+DROP TABLE work.flight;
+
 select * from dictionary.tables where table_name='SAMDAT1';
 create table work.flight as
-           select st.flight,st.dates,st.orig, st.dest from mydblib.SAMDAT1 as st
+           select st.flight,st.dates,st.orig, st.dest from samples.SAMDAT1 as st
            where dest='WAS';
 quit;
-
-
- /*==========================*/
- /* LIBNAME Sample 24       */
- /*==========================*/
- 
- 
-title 'Libname Sample 24: Passthru With Connect Using'; 
-
-proc sql noerrorstop;
-connect using mydblib;
-execute ( create table SAMTEMP( col1 int,TAB1_C1 char(3),
-col2 int,col3 int
- ) ) by mydblib;
-execute ( insert into SAMTEMP values (101,'pup',103,104)
-        ) by mydblib;
-quit;
-
-proc sql noerrorstop;
-connect using mydblib;
-select * from connection to mydblib
- ( select * from SAMTEMP );
-quit;
-
-proc sql noerrorstop;
-connect using mydblib;
-execute ( drop table SAMTEMP ) by mydblib;		
-quit;
-run;
-
