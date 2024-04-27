@@ -1,4 +1,4 @@
-  /*********************************************************************/
+ /*********************************************************************/
  /*          S A S   S A M P L E   L I B R A R Y                      */
  /*                                                                   */
  /*    NAME: coreSamples.sas                                          */
@@ -17,6 +17,7 @@
  /*                                                                   */
  /*********************************************************************/
 LIBNAME samples '/home/u63846711/samples';
+LIBname samples2 '/home/u63846711/baseline';
 
  /*=========================*/
  /* LIBNAME Sample 1       */
@@ -42,7 +43,6 @@ data work.highwage;
     CATEGORY='Avg';
 run;
 
-
 proc print data=work.highwage;
   title 'Libname Sample 2: Salary Analysis';
   format SALARY dollar10.2;
@@ -52,7 +52,7 @@ run;
  /* LIBNAME Sample 3       */
  /*=========================*/
 
-data work.combined;
+ data work.combined;
   merge samples.SAMDAT7 samples.SAMDAT8(in=super
     rename=(SUPID=IDNUM));
   by IDNUM;
@@ -62,6 +62,27 @@ run;
 proc print data=work.combined;
   title 'Libname Sample 3: Supervisor Information';
 run;
+
+/*==========================*/
+/* Rollback Query for SAMDAT5 & 6  */
+/* Delete the updated data from the original table */
+proc sql;
+   delete from samples.SAMDAT7;
+   delete from samples.SAMDAT8;
+quit;
+
+/* Insert the backup data into the original table */
+proc sql;
+   insert into samples.SAMDAT7
+   select * from samples2.SAMDAT7;
+quit;
+
+proc sql;
+   insert into samples.SAMDAT8
+   select * from samples2.SAMDAT8;
+quit;
+ /*==========================*/
+
 
  /*=========================*/
  /* LIBNAME Sample 4       */
@@ -76,6 +97,28 @@ run;
 proc print data=work.payroll;
   title 'Libname Sample 4: Updated Payroll Data';
 run;
+
+/*==========================*/
+/* Rollback Query for SAMDAT5 & 6  */
+/* Delete the updated data from the original table */
+proc sql;
+   delete from samples.SAMDAT5;
+   delete from samples.SAMDAT6;
+quit;
+
+/* Insert the backup data into the original table */
+proc sql;
+   insert into samples.SAMDAT5
+   select * from samples2.SAMDAT5;
+quit;
+
+proc sql;
+   insert into samples.SAMDAT6
+   select * from samples2.SAMDAT6;
+quit;
+ /*==========================*/
+
+
 
  /*=========================*/
  /* LIBNAME Sample 5       */
@@ -153,23 +196,6 @@ proc sql;
   order by DELAY descending;
 quit;
 
- /*==========================*/
- /* LIBNAME Sample 9b        */
- /*==========================*/
-
-title 'Libname Sample 9b: Delayed International Flights in March';
-
-proc sql;
-  select distinct samdat1.FLIGHT,
-      samdat1.DATES,
-      DELAY format=2.0
-    from samples.SAMDAT1, samples.SAMDAT2, samples.SAMDAT3
-  where samdat1.FLIGHT=samdat2.FLIGHT and
-        samdat1.DATES=samdat2.DATES and
-        samdat1.FLIGHT=samdat3.FLIGHT and
-        DELAY>0
-  order by DELAY descending;
-quit;
 
  /*==========================*/
  /* LIBNAME Sample 9c        */
@@ -189,27 +215,6 @@ proc sql;
   order by DELAY descending;
 quit;
 
- /*==========================*/
- /* LIBNAME Sample 9d        */
- /*==========================*/
-
-title 'Libname Sample 9d: Delayed International Flights in March';
-
-proc sql;
-  select distinct samdat1.FLIGHT,
-      samdat1.DATES,
-      DELAY format=2.0
-    from samples.SAMDAT1, samples.SAMDAT2, samples.SAMDAT3
-  where samdat1.FLIGHT=samdat2.FLIGHT and
-        samdat1.DATES=samdat2.DATES and
-        samdat1.FLIGHT=samdat3.FLIGHT and
-        DELAY>0
-  order by DELAY descending;
-quit;
-
-
- /* turn off debug option */
-options debug=off;
 
  /*==========================*/
  /* LIBNAME Sample 10        */
@@ -242,17 +247,21 @@ proc print data=samples.SAMDAT8;
 	title 'Libname Sample 11: New Row in AIRLINE.SAMDAT8';
 run;
 
-proc sql undo_policy=none;
-insert into samples.SAMDAT8
-	values('1588','NY','FA');
+/*==========================*/
+/* Rollback Query for SAMDAT8 */
+/* Delete the updated data from the original table */
+proc sql;
+   delete from samples.SAMDAT8;
 quit;
 
-proc print data=samples.SAMDAT8;
-	title 'Libname Sample 11: New Row in AIRLINE.SAMDAT8';
-run;
+/* Insert the backup data into the original table */
+proc sql;
+   insert into samples.SAMDAT8
+   select * from samples2.SAMDAT8;
+quit;
+ /*==========================*/
 
 
- 
 
  /*==========================*/
  /* LIBNAME Sample 13        */
@@ -297,17 +306,6 @@ proc means data=samples.SAMDAT1 fw=5 maxdec=1 max;
 run;
 
  /*==========================*/
- /* LIBNAME Sample 15        */
- /*==========================*/
-title 'Libname Sample 15: Table Listing';
-
-options pageno=1;
-
-proc datasets lib=samples;
-  contents data=_all_ nods;
-run;
-
- /*==========================*/
  /* LIBNAME Sample 16       */
  /*==========================*/
 
@@ -334,14 +332,6 @@ proc print data=work.ranked;
   format DELAY 2.0;
 run;
 
- /*==========================*/
- /* LIBNAME Sample 17a        */
- /*==========================*/
- 
-data samples.SAMTEMP;
- set samples.SAMDAT2;
-run; 
-proc delete data=samples.SAMTEMP; run;
 
  /*==========================*/
  /* LIBNAME Sample 18        */
@@ -367,6 +357,22 @@ run;
 
 proc print data=samples.SAMDAT5;
 run;
+
+/*==========================*/
+/* Rollback Query for SAMDAT5 */
+/* Delete the updated data from the original table */
+proc sql;
+   delete from samples.SAMDAT5;
+quit;
+
+/* Insert the backup data into the original table */
+proc sql;
+   insert into samples.SAMDAT5
+   select * from samples2.SAMDAT5;
+quit;
+ /*==========================*/
+
+
 
 
  /*==========================*/
@@ -422,20 +428,4 @@ proc sql;
          samdat13.DEPT, samdat13.HIREDATE
     from emp_csr, samples.samdat13
     where emp_csr.EMPID=samdat13.FAMILYID;
-
-quit;
-
-/*==========================*/
- /* LIBNAME Sample 23       */
- /*==========================*/
-
-title 'Libname Sample 23: FedSql Dictionary Tables';
- 
-proc fedsql;
-DROP TABLE work.flight;
-
-select * from dictionary.tables where table_name='SAMDAT1';
-create table work.flight as
-           select st.flight,st.dates,st.orig, st.dest from samples.SAMDAT1 as st
-           where dest='WAS';
 quit;
