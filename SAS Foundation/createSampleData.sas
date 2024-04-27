@@ -25,7 +25,6 @@
 
 LIBNAME samples '/home/u63846711/samples';
 
-
 data samples.samdat1;
    input FLIGHT $3. +5 DATES date7. +3 DEPART time5. +2 ORIG $3.
          +3 DEST $3.  +7 MILES +6 BOARDED +6 CAPACITY;
