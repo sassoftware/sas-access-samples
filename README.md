@@ -30,7 +30,7 @@ To load the programs into the program editor in SAS windowing environment:
 3. Click File > Open Program
 4. Navigate to where you saved the sample files and open them.
 
-To load the sample files using the Git Integration feature in SAS Studio, refer [here](https://go.documentation.sas.com/?docsetId=webeditorug&docsetTarget=n1db24v7wrl64gn19kjothg6mxpj.htm&docsetVersion=3.8&locale=en)
+To load the sample files using the Git Integration feature in SAS Studio, refer [here]([https://go.documentation.sas.com/?docsetId=webeditorug&docsetTarget=n1db24v7wrl64gn19kjothg6mxpj.htm&docsetVersion=3.8&locale=en](https://go.documentation.sas.com/doc/en/webeditorcdc/default/webeditorug/p0puc7muifjjycn1uemlm9lj1jkt.htm))
 
 ## Getting Started
 
@@ -54,6 +54,6 @@ This project is licensed under the [Apache 2.0 License](https://gitlab.sas.com/t
 
 For more information about usage and options that are available for your interface, see this information:
 
-* [SAS/ACCESS for Relational Databases](https://documentation.sas.com/?cdcId=pgmsascdc&cdcVersion=9.4_3.4&docsetId=acreldb&docsetTarget=titlepage.htm)
+* [SAS/ACCESS for Relational Databases](https://go.documentation.sas.com/doc/en/pgmsascdc/default/acreldb/titlepage.htm)
 * Blog posts
 * SAS Communities
