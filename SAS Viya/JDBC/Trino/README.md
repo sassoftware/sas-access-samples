@@ -22,6 +22,9 @@ Before you can connect to Trino through JDBC from SAS Viya, you need to have the
 
 3. Working installation of SAS Viya.
 
+4. Setup a connection to a data source in Trino  (see doc at https://trino.io/docs/current/connector.html)
+  4.1 In Smoke tests we used Iceberg connector, with data stored on ADLS, and a hive metastore.
+
 **To install the JDBC driver:**
 
 1. Download the [Trino JDBC driver](https://trino.io/docs/current/client/jdbc.html).
@@ -45,7 +48,7 @@ This section provides step-by-step instructions on how to set up the connection 
 ```sas
 libname mylib jdbc
   driverclass="io.trino.jdbc.TrinoDriver"
-  URL="jdbc:trino://<hostname>:8080/"
+  URL="jdbc:trino://<hostname>:8080/<connector name>/<schema>"
   user="myuser"
   preserve_tab_names=yes
   preserve_col_names=yes
@@ -59,7 +62,7 @@ cas;
 caslib mycaslib desc='JDBC Caslib'
    dataSource=(srctype='jdbc',
                 driverclass="io.trino.jdbc.TrinoDriver",
-                url="jdbc:trino://<hostname>:8080/",
+                url="jdbc:trino://<hostname>:8080/<connector name>/<schema>",
                 user="myuser");
 caslib _all_ assign;
 ```
@@ -71,16 +74,16 @@ This section explains how to perform a smoke test to ensure that the connection 
 |            Smoke Tests                           |                      |     |
 | ------------------------------------- | -------------------- | --- |
 | [**Table Creation Tests**](..#table-creation-tests) | | |
-|                                       | Create Airline Table | In progress |
-|                                       | Create Cars Table    | In progress |
+|                                       | Create Airline Table | Passed - V.Slow |
+|                                       | Create Cars Table    | Passed |
 | [**Proc SQL Tests**](..#proc-sql-tests) | | |
-|                                       | Create Table         | In progress |
-|                                       | Update Table         | In progress |
-|                                       | Delete Table         | In progress |
-|                                       | Insert into Table    | In progress |
-|                                       | Drop Table           | In progress |
-| [**Implicit SQL Test**](..#implicit-sql-tests) | | In progress |
-| [**FEDSql Test**](..#fedsql-test) | | In progress |
+|                                       | Create Table         | Passed |
+|                                       | Update Table         | Failed - Error - record level updates not supported by JDBC driver |
+|                                       | Delete Table         | Passed |
+|                                       | Insert into Table    | Passed |
+|                                       | Drop Table           | Passed |
+| [**Implicit SQL Test**](..#implicit-sql-tests) | | Passed |
+| [**FEDSql Test**](..#fedsql-test) | | Passed |
 | **Information Catalog Crawler Agent** | | |
 |                                       | CAS Library Based Discovery Agent | In progress |
 |                                       | SAS Compute Library Based Discovery Agent | In progress |
