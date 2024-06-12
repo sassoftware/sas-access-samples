@@ -36,8 +36,8 @@ SQream recommends creating the directory `/opt/sqream` on the SAS Viya server.
 | ------------------- | --------------------------------------------------------------------------------- |
 | **Company URL**     | https://sqream.com                                                                |
 | **JDBC JAR File**   | [sqream-jdbc-4.5.9](https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.9.jar) |
-| **JDBC URL Syntax** | jdbc:Sqream://<endpoint>:<port>/<database>;cluster=true                           |
-| **Default Port**    | 5000, 3108 (cluster)                                                              |
+| **JDBC URL Syntax** | jdbc:Sqream://<hostname>:<port>/<database>;cluster=true                           |
+| **Default Port**    | 5000 (cluster=false), 3108 (cluster=true)                                                              |
 | **JDBC Class**      | com.sqream.jdbc.SQDriver                                                          |
 
 ## Setting up the connection
@@ -48,10 +48,10 @@ This section provides step-by-step instructions on how to set up the connection 
 
 ```sas
 libname mylib sasiojdb
-  URL="jdbc:Sqream://123.123.123.123:5000/master;cluster=false"
+  URL="jdbc:Sqream://<endpoint>:5000/master;cluster=false"
+  schema="myschema"
   user="myuser"
   password="mypw"
-  schema="myschema"
   preserve_names=yes;
 ```
 
@@ -60,10 +60,10 @@ libname mylib sasiojdb
 ```sas
 caslib mycaslib desc='JDBC Caslib'
    dataSource=(srctype='jdbc',
-                url="jdbc:Sqream://123.123.123.123:5000/master;cluster=false",
-                user="myuser"
-                password="mypw"
-                schema="myschema");
+                url="jdbc:Sqream://<endpoint>:5000/master;cluster=false",
+                schema="myschema",
+                user="myuser",
+                password="mypw");
 ```
 
 ## Smoke Testing
