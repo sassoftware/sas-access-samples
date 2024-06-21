@@ -10,6 +10,7 @@
 | [Denodo](Denodo/README.md)                           | 2023-07-31 | denodo-vdp-jdbcdriver-8.0-update-20230301.jar |
 | [SQream](SQream/README.md)       | 2023-07-31 | sqream-jdbc-4.5.9 |
 | [Trino](Trino/README.md)       | In progress | trino-jdbc-434.jar |
+| [Spanner](Spanner/README.md)       | 2024-06-21 | google-cloud-spanner-jdbc-2.19.3-single-jar-with-dependencies.jar |
 
 
 ## Getting Started
