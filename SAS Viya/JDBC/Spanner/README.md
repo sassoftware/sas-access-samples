@@ -173,7 +173,7 @@ If using JDBC, copy the [PostgreSQL JDBC driver](https://repo1.maven.org/maven2/
      ) libref=casspan ;
   ```
 
-## Smoke Testing
+### Smoke Testing
 
 | Smoke Tests                                         | Item                                            | Using the PostgreSQL engine           | Using the JDBC engine and a PostgreSQL JDBC driver |
 | --------------------------------------------------- | ----------------------------------------------- | ------------------------------------- | -------------------------------------------------- |
@@ -198,7 +198,6 @@ If using JDBC, copy the [PostgreSQL JDBC driver](https://repo1.maven.org/maven2/
 | **Information Catalog Crawler Agent**               |                                                 |                                       |                                                    |
 |                                                     | CAS Library Based Discovery Agent               | X (unable to list tables)             | &check;                                            |
 |                                                     | SAS Compute Library Based Discovery Agent       | X (unable to list tables)             | &check;                                            |
-
 
 ## Appendices
 
