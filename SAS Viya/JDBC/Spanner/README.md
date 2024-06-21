@@ -11,7 +11,7 @@ Spanner is a fully managed, mission-critical database service that offers transa
 
 ## Prerequisites
 
-***Note: we assume here that the Spanner database to access is configured with the Google Standard SQL dialect. For a Spanner database configured with the PostgreSQL dialect, see Access a PostgreSQL dialect database.***
+***Note: we assume here that the Spanner database to access is configured with the Google Standard SQL dialect. For a Spanner database configured with the PostgreSQL dialect, see [Access a PostgreSQL Dialect Database](#access-a-postgresql-dialect-database).***
 
 Before you can connect to Spanner through JDBC from SAS Viya, you need to have the following:
 
@@ -31,7 +31,7 @@ Before you can connect to Spanner through JDBC from SAS Viya, you need to have t
 
    - Download the biggest file with a name corresponding to google-cloud-spanner-jdbc-X.XX.X-single-jar-with-dependencies.jar
 
-2. Copy the JDBC driver in /data-drivers/jdbc according to the [instructions](https://support.sas.com/documentation/installcenter/viya/SASViyaReadMe.htm#139721599534704specify-external-jdbc-drivers) provided by SAS.
+2. Copy the JDBC driver in /data-drivers/jdbc according to the [instructions](https://support.sas.com/documentation/installcenter/viya/SASViyaReadMe.htm) (look for "Configuring SAS/ACCESS and Data Connectors for SAS Viya 4") provided by SAS.
 
    ![](images/franir_2024-06-19-13-58-48.png)
 
@@ -92,7 +92,7 @@ This section explains how to perform a smoke test to ensure that the connection 
 | [**FEDSql Test**](..#fedsql-test)                   |                                                 | X (issue with "no name" schema)                                                    |
 | **Information Catalog Crawler Agent**               |                                                 |                                                                                    |
 |                                                     | CAS Library Based Discovery Agent               | &check; (unable to narrow down the list of tables to the default "no name" schema) |
-|                                                     | SAS Compute Library Based Discovery Agent       | X (unable to list table from the default "no name" schema)                         |
+|                                                     | SAS Compute Library Based Discovery Agent       | X (unable to list tables from the default "no name" schema)                        |
 
 ## Troubleshooting
 
@@ -134,7 +134,7 @@ The server on which this adapter runs will be the server targeted in the SAS ins
 
 This section provides step-by-step instructions on how to set up the connection to Spanner configured with a PostgreSQL dialect from SAS Viya Compute or CAS.
 
-If using JDBC, copy the [PostgreSQL JDBC driver](https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar) in /data-drivers/jdbc according to the [instructions](https://support.sas.com/documentation/installcenter/viya/SASViyaReadMe.htm#139721599534704specify-external-jdbc-drivers) provided by SAS.
+If using JDBC, copy the [PostgreSQL JDBC driver](https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar) in /data-drivers/jdbc according to the [instructions](https://support.sas.com/documentation/installcenter/viya/SASViyaReadMe.htm) (look for "Configuring SAS/ACCESS and Data Connectors for SAS Viya 4") provided by SAS.
 
 - Using the PostgreSQL engine
   
@@ -205,13 +205,18 @@ If using JDBC, copy the [PostgreSQL JDBC driver](https://repo1.maven.org/maven2/
 ### SAS Testing Program for a Google SQL Dialect Database
 
 ```sas
+%let project=<project> ;
+%let instance=<instance> ;
+%let database=<database> ;
+%let credfile=<path-to-credentials.json> ;
+
 /* Driver class: com.google.cloud.spanner.jdbc.JdbcDriver */
 options sastrace=',,,d' sastraceloc=saslog nostsuffix msglevel=i
 linesize=132 pagesize=max validvarname=any validmemname=extend noquotelenmax ;
 
 /* Connect: OK */
 libname spanner jdbc 
-   url="jdbc:cloudspanner:/projects/sas-gelsandbox/instances/gel-spanner/databases/gel-gs-sql?credentials=/gcpdm/sa/.gel-sas-user.json;lenient=true"
+   url="jdbc:cloudspanner:/projects/&project/instances/&instance/databases/&database?credentials=&credfile;lenient=true"
    preserve_names=yes
    ;
 
@@ -228,6 +233,7 @@ run ;
 
 
 /* Create with data step: KO */
+/* Wrong syntax generated */
 proc delete data=spanner.airline ;
 run ;
 data spanner.airline ;
@@ -236,6 +242,7 @@ run ;
 
 
 /* Create with proc sql: KO */
+/* Wrong syntax generated */
 proc delete data=spanner.class ;
 run ;
 proc sql ;
@@ -243,21 +250,36 @@ proc sql ;
 quit ;
 
 
+/* Create with explicit PT OK */
+proc delete data=spanner.class ;
+run ;
+proc sql ;
+   connect using spanner ;
+   execute (
+      CREATE TABLE class (Name STRING(8), Sex STRING(1), Age FLOAT64, Height FLOAT64, Weight FLOAT64) PRIMARY KEY (Name)
+   ) by spanner ;
+   disconnect from spanner ;
+quit ;
+/* Append OK */
+proc append base=spanner.class data=sashelp.class ;
+run ;
+
+
 /* Update with proc sql: OK */
 proc sql ;
-   update spanner.singers set FirstName='Marcel' where FirstName='Paul' ;
+   update spanner.singers set FirstName='Paul' where FirstName='John' ;
 quit ;
 
 
 /* Delete rows with proc sql: OK */
 proc sql ;
-   delete from spanner.singers where FirstName='Marcel' ;
+   delete from spanner.singers where FirstName='Paul' ;
 quit ;
 
 
 /* Insert rows with proc sql: OK */
 proc sql ;
-   insert into spanner.singers(SingerId, FirstName) values (11,'Ted') ;
+   insert into spanner.singers(SingerId, FirstName, LastName) values (12,'Taylor','Swift') ;
 quit ;
 
 
@@ -268,7 +290,7 @@ run ;
 
 /* Delete table proc sql: OK */
 proc sql ;
-   drop table spanner.singers ;
+   drop table spanner.singers2 ;
 quit ;
 
 
@@ -301,7 +323,7 @@ quit ;
 
 /* Define a Spanner caslib */
 caslib casspan datasource=(srctype="jdbc"
-   url="jdbc:cloudspanner:/projects/sas-gelsandbox/instances/gel-spanner/databases/gel-gs-sql?credentials=/gcpdm/sa/.gel-sas-user.json;lenient=true",
+   url="jdbc:cloudspanner:/projects/&project/instances/&instance/databases/&database?credentials=&credfile;lenient=true",
    ) libref=casspan ;
 
 /* List Spanner tables: OK but unable to narrow down the list of tables to the default "no name" schema */
@@ -320,17 +342,21 @@ quit ;
 proc casutil incaslib="casspan" outcaslib="casspan" ;
    save casdata="singers" casout="singers2" ;
 quit ;
+
+cas _all_ terminate ;
 ```
 
 ### SAS Testing Program for a PostgreSQL Dialect Database using PostgreSQL engine
 
 ```sas
+%let pgadapter_server=<pgadapter_server> ;
+
 options sastrace=',,,d' sastraceloc=saslog nostsuffix msglevel=i
 linesize=132 pagesize=max validvarname=any validmemname=extend noquotelenmax ;
 
 /* Connect: OK */
 libname spanner postgres user="dummy" password="dummy" database="dummy" 
-   schema="public" server="rext03-0063.race.sas.com" preserve_names=yes
+   schema="public" server="&pgadapter_server" preserve_names=yes
    ; 
 
 
@@ -374,7 +400,6 @@ proc sql ;
    disconnect from spanner ;
 quit ;
 /* Append KO */
-/* Bad syntax generation */
 proc append base=spanner.class data=sashelp.class ;
 run ;
 
@@ -438,7 +463,7 @@ quit ;
 
 /* Define a Spanner caslib */
 caslib casspan datasource=(srctype="postgres"
-   schema="public" server="rext03-0063.race.sas.com"
+   schema="public" server="&pgadapter_server"
 ) libref=casspan ; 
 
 /* List Spanner tables: KO */
@@ -458,17 +483,22 @@ quit ;
 proc casutil incaslib="casspan" outcaslib="casspan" ;
    save casdata="facilities" casout="facilities2" ;
 quit ;
+
+cas _all_ terminate ;
 ```
 
 ### SAS Testing Program for a PostgreSQL Dialect Database using JDBC engine
 
 ```sas
+%let database=<database> ;
+%let pgadapter_server=<pgadapter_server> ;
+
 options sastrace=',,,d' sastraceloc=saslog nostsuffix msglevel=i
 linesize=132 pagesize=max validvarname=any validmemname=extend noquotelenmax ;
 
 /* Connect: OK */
 libname spanner jdbc 
-   url="jdbc:postgresql://rext03-0063.race.sas.com:5432/gel-gs-sql"
+   url="jdbc:postgresql://&pgadapter_server:5432/&database"
    preserve_names=yes
    ;
 
@@ -574,8 +604,8 @@ quit ;
 
 /* Define a Spanner caslib */
 caslib casspan datasource=(srctype="jdbc"
-   url="jdbc:postgresql://rext03-0063.race.sas.com:5432/gel-gs-sql" schema="public"
-   ) libref=casspan global ;
+   url="jdbc:postgresql://&pgadapter_server:5432/&database" schema="public"
+   ) libref=casspan ;
 
 /* List Spanner tables: OK */
 proc casutil incaslib="casspan" ;
@@ -592,4 +622,6 @@ quit ;
 proc casutil incaslib="casspan" outcaslib="casspan" ;
    save casdata="facilities" casout="facilities2" ;
 quit ;
+
+cas _all_ terminate ;
 ```
