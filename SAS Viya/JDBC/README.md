@@ -6,8 +6,10 @@
 
 | Database                          | Smoke Testing Date | Driver Version |
 | --------------------------------- | ------------------ | -------------- |
+| [Amazon Athena](AmazonAthena/README.md)                        | In Progress | AthenaJDBC42-2.1.5.1001.jar |
 | [Data Virtuality](DataVirtuality/README.md)                        | 2023-10-19 | datavirtuality-jdbc_4.0.3.jar |
 | [Denodo](Denodo/README.md)                           | 2023-07-31 | denodo-vdp-jdbcdriver-8.0-update-20230301.jar |
+| [SQLite](SQLite/README.md)       | In Progress | sqlite-jdbc-3.46.0.0.jar |
 | [SQream](SQream/README.md)       | 2023-07-31 | sqream-jdbc-4.5.9 |
 | [Trino](Trino/README.md)       | In progress | trino-jdbc-434.jar |
 | [Spanner](Spanner/README.md)       | 2024-06-21 | google-cloud-spanner-jdbc-2.19.3-single-jar-with-dependencies.jar |
