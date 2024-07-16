@@ -46,7 +46,7 @@ Before you can connect to SQLite through JDBC from  SAS Viya, you need to have t
 | ------------------- | --------------------------------------------------------------------------------- |
 | **Company URL**     | https://www.sqlite.org                                                     |
 | **JDBC JAR File**   | [sqlite-jdbc-3.46.0.0](https://github.com/xerial/sqlite-jdbc/releases/download/3.46.0.0/sqlite-jdbc-3.46.0.0.jar) |
-| **JDBC URL Syntax** | "jdbc:sqlite://<file>                           |
+| **JDBC URL Syntax** | jdbc:sqlite://<file>                           |
 | **JDBC Class**      | org.sqlite.JDBC                                                          |
 
 ## Setting up the connection
