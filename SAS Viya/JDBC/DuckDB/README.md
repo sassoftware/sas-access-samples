@@ -25,6 +25,7 @@ Before you can connect to DuckDB through JDBC from SAS Viya, you need to have th
 
 ## Overview
 
+
 | Trino                      |                                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | **Company URL**            | [https://duckdb.org](https://duckdb.org)                                                                   |
@@ -64,6 +65,7 @@ caslib _all_ assign;
 
 This section explains how to perform a smoke test to ensure that the connection is working correctly. A smoke test is a quick and simple test that verifies that the basic functionality of the connection is working as expected.
 
+
 | Smoke Tests                                         |                                           |                                                                         |
 | ----------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------- |
 | [**Table Creation Tests**](..#table-creation-tests) |                                           |                                                                         |
@@ -99,14 +101,25 @@ In general testing has shown that when working with DuckDB use of explicit SQL h
 libname myduckj jdbc url="jdbc:duckdb:/tmp/mydb" DRIVERCLASS="org.duckdb.DuckDBDriver" preserve_tab_names=yes preserve_col_names=yes dbmax_text=512;
 
 proc sql outobs=30;
+
 connect using myduckj as j_duck;
+
 execute by j_duck (set global extension_directory = '/tmp/duckdb');
+
 execute by j_duck (set home_directory = '/tmp/mydb');
+
 execute by j_duck (INSTALL azure);
+
 execute by j_duck (LOAD azure);
+
 execute by j_duck (SET azure_storage_connection_string = 'DefaultEndpointsProtocol=https;AccountName=myaccount;AccountKey=mykey;EndpointSuffix=core.windows.net');
+
 select * from connection to j_duck (select count(*) from 'azure://path/nyctiny.parquet');
+
 execute by j_duck (DROP table IF EXISTS test);
+
 execute by j_duck ( CREATE TABLE test AS SELECT * FROM 'azure://path/nyctiny.parquet');
+
 select * from connection to j_duck (select * from test);
+
 quit;
